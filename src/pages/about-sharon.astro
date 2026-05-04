@@ -1,0 +1,137 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { CALENDLY_URL } from '../lib/links';
+import heroPortrait from '../assets/images/about-hero-portrait.jpg';
+import fremantle from '../assets/images/about-fremantle.jpg';
+import clientLogos from '../assets/images/about-client-logos.png';
+import cessna from '../assets/images/about-cessna.jpg';
+
+const title = 'About Sharon — Sharon Williams Psychologist';
+const description =
+  'Sharon Williams is a Registered Psychologist and Trusted Advisor to CEOs and C-suite executives across Australia, with over 20 years of experience using clinical-grade psychological assessment to uncover hidden leadership derailers.';
+---
+
+<Layout title={title} description={description}>
+  <section class="relative">
+    <Image
+      src={heroPortrait}
+      alt="Sharon Williams"
+      class="w-full h-[60vh] md:h-[70vh] object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/20 to-neutral-950/80"></div>
+    <div class="absolute inset-0 flex items-end">
+      <div class="max-w-7xl mx-auto px-6 pb-12 md:pb-16 w-full">
+        <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl lowercase tracking-tight max-w-4xl">
+          lead without the blind spots
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-950 py-24">
+    <div class="max-w-6xl mx-auto px-6 grid gap-12 md:grid-cols-2 items-center">
+      <div>
+        <Image src={fremantle} alt="Sharon Williams in Fremantle" class="w-full aspect-[4/5] object-cover" />
+      </div>
+      <div class="space-y-6">
+        <h2 class="font-serif text-3xl md:text-4xl">Hi, I'm Sharon Williams</h2>
+        <p class="text-neutral-300 leading-relaxed">
+          Sharon Williams is a Registered Psychologist and Trusted Advisor to CEOs and C-suite executives
+          across Australia's most demanding sectors — banking &amp; finance, mining, technology, FMCG, and
+          government.
+        </p>
+        <p class="text-neutral-300 leading-relaxed">
+          For over 20 years, she has used clinical-grade psychological assessment to uncover what
+          conventional coaching cannot: the hidden derailers that silently sabotage senior leaders under
+          pressure.
+        </p>
+        <a
+          href={CALENDLY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-6 py-3 text-sm tracking-widest uppercase transition-colors"
+        >
+          Book a Complimentary Consultation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-900 py-24">
+    <div class="max-w-3xl mx-auto px-6 space-y-10">
+      <h2 class="font-serif text-3xl md:text-4xl text-center">Sharon's Approach</h2>
+      <p class="text-neutral-300 leading-relaxed text-lg">
+        With 20 years running her own practice as an Executive Coach and working with clients such as
+        Ernst &amp; Young, American Express, Commonwealth Bank, ASIC, Australian Federal Police, BHP, Rio
+        Tinto, Coca-Cola, and Woolworths, Sharon Williams understands what results look like for leaders.
+      </p>
+      <p class="text-neutral-300 leading-relaxed text-lg">
+        Her belief is that working at the highest level — with the CEO or C-Suite — positively impacts
+        thousands of people and is what drives her work in leadership coaching. Sharon holds a long track
+        record of getting exceptional results for her coaching clients.
+      </p>
+
+      <div class="space-y-4 pt-4">
+        <h3 class="font-serif text-2xl text-amber-400">The Method</h3>
+        <p class="text-neutral-300 leading-relaxed">
+          This is not just coaching. It is a psychological diagnostic process.
+        </p>
+        <p class="text-neutral-300 leading-relaxed">
+          Every engagement begins with a comprehensive battery of psychometric assessments, including a
+          360-degree leadership review, a derailer-specific assessment, and structured stakeholder
+          interviews, designed to surface what no amount of feedback or self-reflection can reach: the
+          deeply embedded behavioural patterns that derail leaders under pressure.
+        </p>
+        <p class="text-neutral-300 leading-relaxed">
+          Most executives have never been assessed at this depth. When they are, the insight alone changes
+          how they lead.
+        </p>
+      </div>
+
+      <div class="space-y-4 pt-4">
+        <h3 class="font-serif text-2xl text-amber-400">Who I work with</h3>
+        <p class="text-neutral-300 leading-relaxed">
+          My clients run banks, mining organisations, government departments, and technology companies.
+        </p>
+        <p class="text-neutral-300 leading-relaxed">
+          They've already succeeded. They don't need coaching.
+        </p>
+        <p class="text-neutral-300 leading-relaxed">
+          They need someone who will tell them the truth that most peers, board members, or executive
+          coaches won't.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-950 py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <Image src={clientLogos} alt="Selected clients and qualifications" class="w-full h-auto" />
+    </div>
+  </section>
+
+  <section class="relative">
+    <Image
+      src={cessna}
+      alt="Sharon next to a Cessna 152"
+      class="w-full h-[60vh] md:h-[80vh] object-cover"
+    />
+    <div class="absolute inset-0 bg-neutral-950/60"></div>
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <blockquote class="font-serif text-2xl md:text-4xl leading-relaxed italic space-y-6">
+          <p>
+            Sharon also has an adventurous side… she has travelled to 55 countries, has climbed Mount
+            Kilimanjaro and is learning to fly a Cessna 152.
+          </p>
+          <p class="text-amber-400 not-italic font-sans text-lg md:text-xl tracking-wide">
+            Motivated AND motivating, she challenges her clients to think big — because she knows that
+            leaders have to take calculated risks to get results.
+          </p>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+</Layout>

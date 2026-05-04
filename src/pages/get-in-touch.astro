@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import heroOneStep from '../assets/images/contact-hero-one-small-step.jpg';
+import leadershipCoach from '../assets/images/contact-leadership-coach.jpg';
+
+const title = 'Get In Touch — Sharon Williams Psychologist';
+const description =
+  'Reach out to Sharon Williams to start the conversation. Executive coaching and keynote addresses for senior leaders across Australia and internationally.';
+
+const services = [
+  { value: 'executive-deep-dive', label: 'The Executive Deep Dive' },
+  { value: 'ceo-transition-program', label: 'The CEO Transition Program' },
+  { value: 'team-reset', label: 'The High-Performance Team Reset' },
+];
+---
+
+<Layout title={title} description={description}>
+  <section class="relative">
+    <Image
+      src={heroOneStep}
+      alt="A path forward"
+      class="w-full h-[60vh] md:h-[70vh] object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/20 to-neutral-950/80"></div>
+    <div class="absolute inset-0 flex items-end">
+      <div class="max-w-7xl mx-auto px-6 pb-12 md:pb-16 w-full">
+        <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl lowercase tracking-tight max-w-4xl">
+          it starts with one small step
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-950 py-20">
+    <div class="max-w-3xl mx-auto px-6 space-y-6 text-center">
+      <h2 class="font-serif text-3xl md:text-4xl">Get in touch!</h2>
+      <p class="text-neutral-300 text-lg leading-relaxed">
+        Every leadership challenge is unique. Sharon offers executive coaching and keynote addresses to
+        senior leaders across Australia and internationally — and is currently accepting new clients.
+      </p>
+      <p class="text-neutral-300 text-lg leading-relaxed">Reach out to start the conversation.</p>
+    </div>
+  </section>
+
+  <section class="bg-neutral-900 py-16">
+    <div class="max-w-2xl mx-auto px-6">
+      <p class="italic text-neutral-400 text-sm mb-6 text-center">
+        Email Sharon directly at
+        <a href="mailto:sharon@shawilliams.com" class="text-amber-400 hover:underline">
+          sharon@shawilliams.com
+        </a>
+        while we finish setting this up.
+      </p>
+      <!-- TODO: wire up contact form backend (Cloudflare Pages Functions or Formspree) -->
+      <form class="space-y-6" onsubmit="event.preventDefault()">
+        <div class="grid gap-6 sm:grid-cols-2">
+          <label class="block">
+            <span class="block text-xs tracking-widest uppercase text-neutral-400 mb-2">First name</span>
+            <input
+              type="text"
+              name="firstName"
+              required
+              class="w-full bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none"
+            />
+          </label>
+          <label class="block">
+            <span class="block text-xs tracking-widest uppercase text-neutral-400 mb-2">Last name</span>
+            <input
+              type="text"
+              name="lastName"
+              required
+              class="w-full bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none"
+            />
+          </label>
+        </div>
+
+        <label class="block">
+          <span class="block text-xs tracking-widest uppercase text-neutral-400 mb-2">Email</span>
+          <input
+            type="email"
+            name="email"
+            required
+            class="w-full bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none"
+          />
+        </label>
+
+        <label class="block">
+          <span class="block text-xs tracking-widest uppercase text-neutral-400 mb-2">Subject</span>
+          <input
+            type="text"
+            name="subject"
+            required
+            class="w-full bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none"
+          />
+        </label>
+
+        <fieldset>
+          <legend class="block text-xs tracking-widest uppercase text-neutral-400 mb-3">
+            Inquiring about
+          </legend>
+          <div class="space-y-2">
+            {services.map((service) => (
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="radio"
+                  name="service"
+                  value={service.value}
+                  class="accent-amber-500"
+                />
+                <span class="text-neutral-200">{service.label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <label class="block">
+          <span class="block text-xs tracking-widest uppercase text-neutral-400 mb-2">Message</span>
+          <textarea
+            name="message"
+            required
+            rows="6"
+            class="w-full bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none resize-y"
+          ></textarea>
+        </label>
+
+        <button
+          type="submit"
+          class="w-full bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold py-3 text-sm tracking-widest uppercase transition-colors"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <Image
+      src={leadershipCoach}
+      alt="Sharon Williams — Leadership Coach to CEOs and Executives"
+      class="w-full h-[50vh] md:h-[70vh] object-cover"
+    />
+  </section>
+</Layout>

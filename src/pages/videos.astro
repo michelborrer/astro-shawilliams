@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import heroFlight from '../assets/images/videos-hero-leadership-flight.jpg';
+
+const title = 'Videos — Sharon Williams Psychologist';
+const description =
+  'Short video lessons on leadership, performance and decision-making from Sharon Williams: Leadership Strategy & Performance and Leadership Lessons from the Cockpit.';
+
+type Category = 'Leadership Strategy & Performance' | 'Leadership Lessons from the Cockpit';
+
+type Video = {
+  id: number;
+  title: string;
+  category: Category;
+  youtubeId: string;
+  detailUrl: string;
+};
+
+const videos: Video[] = [
+  {
+    id: 1,
+    title: 'Cognitive Fatigue',
+    category: 'Leadership Strategy & Performance',
+    youtubeId: 'K71vVlfOJ_c',
+    detailUrl: 'https://shawilliams.com/videos/v/cognitive-fatigue',
+  },
+  {
+    id: 2,
+    title: 'When ego and optimism are not your friends',
+    category: 'Leadership Lessons from the Cockpit',
+    youtubeId: 'pTOwCyjpNVk',
+    detailUrl: 'https://shawilliams.com/videos/v/when-ego-and-optimism-are-not-your-friends',
+  },
+  {
+    id: 3,
+    title: 'Why Strategy Time Should be your Priority',
+    category: 'Leadership Strategy & Performance',
+    youtubeId: '0BI3MtGz4jQ',
+    detailUrl: 'https://shawilliams.com/videos/v/why-strategy-time-should-be-your-priority',
+  },
+  {
+    id: 4,
+    title: 'Faking it vs Persistence',
+    category: 'Leadership Lessons from the Cockpit',
+    youtubeId: '407F1ask3TE',
+    detailUrl: 'https://shawilliams.com/videos/v/faking-it-vs-persistence',
+  },
+  {
+    id: 5,
+    title: 'How Your Dark Side Can Self-Sabotage Your Leadership',
+    category: 'Leadership Strategy & Performance',
+    youtubeId: 'xe60kd6sl0I',
+    detailUrl: 'https://shawilliams.com/videos/v/how-your-dark-side-can-self-sabotage-your-leadership',
+  },
+  {
+    id: 6,
+    title: 'Make a decision',
+    category: 'Leadership Lessons from the Cockpit',
+    youtubeId: 'f_b3H5cqnUI',
+    detailUrl: 'https://shawilliams.com/videos/v/make-a-decision',
+  },
+  {
+    id: 7,
+    title: 'When you really truly believe…',
+    category: 'Leadership Lessons from the Cockpit',
+    youtubeId: 'm7XTS7C4zXk',
+    detailUrl: 'https://shawilliams.com/videos/v/when-you-really-truly-believe',
+  },
+  {
+    id: 8,
+    title: 'Why Elite Performers have a Morning Routine',
+    category: 'Leadership Strategy & Performance',
+    youtubeId: '5n23lD-Xtss',
+    detailUrl: 'https://shawilliams.com/videos/v/why-elite-performers-have-a-morning-routine',
+  },
+  {
+    id: 9,
+    title: 'Do the work!',
+    category: 'Leadership Lessons from the Cockpit',
+    youtubeId: 'W7n5e0wDV1A',
+    detailUrl: 'https://shawilliams.com/videos/v/do-the-work',
+  },
+  {
+    id: 10,
+    title: 'Just fix it! Immediately.',
+    category: 'Leadership Lessons from the Cockpit',
+    youtubeId: 'JO8cE0cz2tY',
+    detailUrl: 'https://shawilliams.com/videos/v/just-fix-it-immediately',
+  },
+  {
+    id: 11,
+    title: 'Recovery Time',
+    category: 'Leadership Strategy & Performance',
+    youtubeId: 'vF9Ql2nEpaI',
+    detailUrl: 'https://shawilliams.com/videos/v/recovery-time',
+  },
+  {
+    id: 12,
+    title: 'Do You Make Your Bed?',
+    category: 'Leadership Strategy & Performance',
+    youtubeId: '6n0EqOLHR04',
+    detailUrl: 'https://shawilliams.com/videos/v/do-you-make-your-bed',
+  },
+];
+
+const categories: Category[] = [
+  'Leadership Strategy & Performance',
+  'Leadership Lessons from the Cockpit',
+];
+---
+
+<Layout title={title} description={description}>
+  <section class="relative">
+    <Image
+      src={heroFlight}
+      alt="Leadership in Flight Programme"
+      class="w-full h-[60vh] md:h-[70vh] object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/20 to-neutral-950/80"></div>
+    <div class="absolute inset-0 flex items-end">
+      <div class="max-w-7xl mx-auto px-6 pb-12 md:pb-16 w-full">
+        <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl tracking-tight max-w-4xl">
+          Shorts from Sharon
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  {categories.map((category) => {
+    const items = videos.filter((v) => v.category === category);
+    return (
+      <section class="bg-neutral-950 py-20 border-b border-neutral-900 last:border-b-0">
+        <div class="max-w-7xl mx-auto px-6">
+          <h2 class="font-serif text-2xl md:text-3xl mb-10 text-amber-400">{category}</h2>
+          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {items.map((video) => (
+              <article class="bg-neutral-900 border border-neutral-800 hover:border-amber-500 transition-colors flex flex-col">
+                <a
+                  href={video.detailUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block aspect-video overflow-hidden"
+                >
+                  <img
+                    src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`}
+                    alt={video.title}
+                    loading="lazy"
+                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </a>
+                <div class="p-6 flex-1 flex flex-col gap-4">
+                  <h3 class="font-serif text-xl flex-1">{video.title}</h3>
+                  <a
+                    href={video.detailUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-amber-400 text-sm tracking-widest uppercase self-start"
+                  >
+                    Watch on YouTube &rarr;
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  })}
+</Layout>

@@ -1,17 +1,204 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import heroGlassCeiling from '../assets/images/hero-glass-ceiling.jpg';
+import executiveCoach from '../assets/images/executive-coach.jpg';
+import sydneyHarbourBridge from '../assets/images/sydney-harbour-bridge.jpg';
+import videoDarkSide from '../assets/images/video-dark-side.jpg';
+import videoStrategy from '../assets/images/video-strategy.jpg';
+import videoEliteRowers from '../assets/images/video-elite-rowers.jpg';
 
+const services = [
+  {
+    title: 'The Executive Deep Dive',
+    body: [
+      'The traits that drove your success become liabilities under pressure.',
+      'I find them before they find you — through psychological assessment, not guesswork.',
+    ],
+  },
+  {
+    title: 'The CEO Transition Program',
+    body: [
+      'The first 100 days define your leadership legacy.',
+      'Start with a psychologist in your corner.',
+    ],
+  },
+  {
+    title: 'The High-Performance Team Reset',
+    body: [
+      'Your leadership team should be your greatest asset.',
+      "Right now, it's probably your biggest risk.",
+    ],
+  },
+];
+
+const videos = [
+  {
+    title: 'How Your Dark Side Can Self-Sabotage Your Leadership',
+    image: videoDarkSide,
+    href: 'https://www.shawilliams.com/videos/v/how-your-dark-side-can-self-sabotage-your-leadership?categoryId=630b41d73cbabd2b2666d8ec',
+  },
+  {
+    title: 'Why Strategy Time Should be your Priority',
+    image: videoStrategy,
+    href: 'https://www.shawilliams.com/videos/v/why-strategy-time-should-be-your-priority',
+  },
+  {
+    title: 'Why Elite Performers have a Morning Routine',
+    image: videoEliteRowers,
+    href: 'https://www.shawilliams.com/videos/v/why-elite-performers-have-a-morning-routine',
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <section class="relative">
+    <Image
+      src={heroGlassCeiling}
+      alt="Glass ceiling viewed from below"
+      class="w-full h-[calc(100vh-80px)] object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/20 to-neutral-950/80"></div>
+    <div class="absolute inset-0 flex items-end">
+      <div class="max-w-7xl mx-auto px-6 pb-12 md:pb-16 w-full">
+        <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl lowercase tracking-tight max-w-4xl">
+          what made you successful is now holding you back
+        </h1>
+        <p class="mt-6 text-lg md:text-2xl text-neutral-200 lowercase tracking-wide">
+          psychologist and trusted advisor to c-suite leaders
+        </p>
+        <p class="mt-2 text-lg md:text-2xl text-neutral-200 lowercase tracking-wide max-w-3xl">
+          I uncover the hidden derailers that traditional coaching misses
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative">
+    <Image
+      src={executiveCoach}
+      alt="Sharon Williams, executive coach"
+      class="w-full h-[60vh] md:h-[80vh] object-cover"
+    />
+    <div class="absolute inset-0 bg-neutral-950/60"></div>
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <blockquote class="font-serif text-3xl md:text-5xl leading-tight italic">
+          "At the top, your greatest challenge is the one you can't see."
+        </blockquote>
+        <a
+          href="/about-sharon"
+          class="inline-block mt-10 bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors"
+        >
+          About Sharon
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-950 py-24">
+    <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
+      <p class="font-serif text-2xl md:text-3xl leading-relaxed">
+        Perfectionism and over-functioning are brilliant assets, until they become derailers.
+      </p>
+      <p class="font-serif text-2xl md:text-3xl leading-relaxed text-neutral-300">
+        I help you identify and coach the self-sabotaging behaviours you cannot see in yourself.
+      </p>
+    </div>
+  </section>
+
+  <section class="relative">
+    <Image
+      src={sydneyHarbourBridge}
+      alt="Sydney Harbour Bridge at dusk"
+      class="w-full h-[40vh] md:h-[50vh] object-cover"
+    />
+    <div class="absolute inset-0 bg-neutral-950/40"></div>
+  </section>
+
+  <section class="bg-neutral-900 py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid gap-10 md:gap-8 md:grid-cols-3">
+        {services.map((service) => (
+          <article class="bg-neutral-950 border border-neutral-800 p-8 flex flex-col">
+            <h2 class="font-serif text-2xl md:text-3xl text-amber-400 mb-6">{service.title}</h2>
+            <div class="space-y-4 text-neutral-300 flex-1">
+              {service.body.map((line) => <p>{line}</p>)}
+            </div>
+            <a
+              href="/coaching"
+              class="inline-block mt-8 self-start bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-6 py-2.5 text-sm tracking-widest uppercase transition-colors"
+            >
+              Learn More
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-950 py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="font-serif text-3xl md:text-4xl mb-10 text-center">Resources</h2>
+      <div class="overflow-x-auto -mx-6 px-6 pb-4">
+        <div class="flex gap-6 snap-x snap-mandatory min-w-max md:min-w-0 md:grid md:grid-cols-3">
+          {videos.map((video) => (
+            <a
+              href={video.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group snap-start shrink-0 w-80 md:w-auto bg-neutral-900 border border-neutral-800 hover:border-amber-500 transition-colors flex flex-col"
+            >
+              <div class="aspect-video overflow-hidden">
+                <Image
+                  src={video.image}
+                  alt={video.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div class="p-6 flex-1 flex flex-col">
+                <h3 class="font-serif text-xl mb-4 flex-1">{video.title}</h3>
+                <span class="text-amber-400 text-sm tracking-widest uppercase">Read More &rarr;</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-900 py-24">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="font-serif text-3xl md:text-5xl mb-6">The Psychology Behind Exceptional Leadership</h2>
+      <p class="text-neutral-300 text-lg mb-10">
+        Psychological insights on leadership blind spots, derailers, and the mindset shifts that
+        separate good leaders from exceptional ones.
+      </p>
+      <!-- TODO: wire up newsletter backend -->
+      <form class="grid gap-4 sm:grid-cols-2 max-w-xl mx-auto" onsubmit="event.preventDefault()">
+        <input
+          type="text"
+          placeholder="First name"
+          class="bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none"
+        />
+        <input
+          type="text"
+          placeholder="Last name"
+          class="bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none"
+        />
+        <input
+          type="email"
+          placeholder="Email address"
+          class="sm:col-span-2 bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none"
+        />
+        <button
+          type="submit"
+          class="sm:col-span-2 bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold py-3 text-sm tracking-widest uppercase transition-colors"
+        >
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </section>
+</Layout>
