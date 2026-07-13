@@ -45,6 +45,22 @@ html {
   outline-offset: 2px;
 }
 
+/* object-cover presets — keep faces and subjects in frame */
+.img-cover-top {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.img-cover-face {
+  object-fit: cover;
+  object-position: center 28%;
+}
+
+.img-cover-bottom-right {
+  object-fit: cover;
+  object-position: right bottom;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .motion-safe-hover-scale:hover img {
     transform: scale(1.05);

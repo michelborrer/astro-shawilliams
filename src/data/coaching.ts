@@ -4,6 +4,8 @@ import flightLeadership from '../assets/images/coaching-flight-leadership.jpg';
 import teamImage from '../assets/images/coaching-team.jpg';
 import { CALENDLY_URL } from '../lib/links';
 
+export type ImagePosition = 'top' | 'face' | 'center' | 'bottom-right';
+
 export type CoachingProgram = {
   slug: string;
   anchorId: string;
@@ -13,6 +15,7 @@ export type CoachingProgram = {
   metaDescription: string;
   image: ImageMetadata;
   imageAlt: string;
+  imagePosition: ImagePosition;
   who: string[];
   included: string[];
   ctaLabel: string;
@@ -30,6 +33,7 @@ export const coachingPrograms: CoachingProgram[] = [
       'The Executive Deep Dive: psychometric assessment, 360-degree review and derailer identification for CEOs and C-suite leaders who need clinical-grade insight, not generic coaching.',
     image: deepDivePortrait,
     imageAlt: 'Sharon Williams at her desk',
+    imagePosition: 'face',
     who: [
       "You're a high-performing CEO, C-suite executive, or senior director, and something isn't landing the way it should.",
       'On paper, everything looks right. In practice, something is costing you.',
@@ -57,6 +61,7 @@ export const coachingPrograms: CoachingProgram[] = [
       'CEO Transition Program: psychologically-informed 100-day planning, derailer assessment and real-time advisory for leaders stepping into CEO or MD roles.',
     image: flightLeadership,
     imageAlt: 'Flight leadership course',
+    imagePosition: 'center',
     who: [
       "You've just been appointed to a CEO, Managing Director, or senior executive role, or you will be within the next quarter.",
       "The board is watching. Your new team is forming first impressions before you've had your second meeting. The organisation expects you to hit the ground running, but the traits that earned you this role aren't necessarily the ones that will make you succeed in it.",
@@ -84,6 +89,7 @@ export const coachingPrograms: CoachingProgram[] = [
       'High-Performance Team Reset: psychometric team diagnostics, dynamics mapping and facilitated recalibration for senior leadership teams stuck in silos and politics.',
     image: teamImage,
     imageAlt: 'Senior leadership team',
+    imagePosition: 'top',
     who: [
       'You lead, or sit on, a senior leadership team that looks capable on paper but operates in silos, avoids accountability, and defaults to politics over strategy.',
       "Offsites produce energy that evaporates by Monday. Consultants have come and gone. The dysfunction persists — because no one has diagnosed what's actually driving it. You don't need another team-building exercise.",

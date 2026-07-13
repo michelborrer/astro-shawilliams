@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import { coachingPrograms } from '../../data/coaching';
+import { imagePositionClass } from '../../lib/imagePosition';
 import { CALENDLY_URL } from '../../lib/links';
 
 export function getStaticPaths() {
@@ -44,7 +45,12 @@ const title = `${program.title} — Sharon Williams Psychologist`;
 
   <section class="bg-neutral-950 py-16">
     <div class="max-w-6xl mx-auto px-6 grid gap-12 md:grid-cols-2 items-start">
-      <Image src={program.image} alt={program.imageAlt} class="w-full aspect-[4/5] object-cover" loading="eager" />
+      <Image
+        src={program.image}
+        alt={program.imageAlt}
+        class:list={['w-full aspect-[4/5]', imagePositionClass(program.imagePosition)]}
+        loading="eager"
+      />
       <div class="space-y-8">
         <div>
           <h2 class="text-xs tracking-widest uppercase text-amber-400 mb-3">Who this is for</h2>
