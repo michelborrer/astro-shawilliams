@@ -61,6 +61,11 @@ html {
   object-position: right bottom;
 }
 
+.img-cover-circle-portrait {
+  object-fit: cover;
+  object-position: center 32%;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .motion-safe-hover-scale:hover img {
     transform: scale(1.05);
