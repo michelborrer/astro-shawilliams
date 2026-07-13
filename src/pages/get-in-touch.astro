@@ -29,62 +29,75 @@ const description =
     </div>
   </section>
 
-  <section class="bg-neutral-950 py-20">
-    <div class="max-w-3xl mx-auto px-6 space-y-6 text-center">
-      <h2 class="font-serif text-3xl md:text-4xl">Get in touch!</h2>
-      <p class="text-neutral-300 text-lg leading-relaxed">
-        Every leadership challenge is unique. Sharon offers executive coaching and keynote addresses to
-        senior leaders across Australia and internationally — and is currently accepting new clients.
-      </p>
-      <p class="text-neutral-300 text-lg leading-relaxed">Reach out to start the conversation.</p>
-    </div>
-  </section>
-
-  <section class="bg-neutral-900 py-16">
-    <div class="max-w-2xl mx-auto px-6 text-center space-y-8">
-      <p class="text-neutral-300 text-lg">
-        The contact form will be available when we launch the new site. For now, book a complimentary
-        consultation or email Sharon directly.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href={CALENDLY_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-block bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
-        >
-          Book a Complimentary Consultation
-        </a>
-        <a
-          href={MAILTO_ENQUIRY}
-          class="inline-block border border-neutral-600 hover:border-amber-400 text-neutral-200 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
-        >
-          Email {EMAIL}
-        </a>
+  <section class="bg-neutral-950 py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6 grid gap-12 lg:grid-cols-2 lg:gap-16 items-start">
+      <div class="space-y-8">
+        <h2 class="font-serif text-3xl md:text-4xl tracking-wide uppercase">Get in touch!</h2>
+        <div class="mx-auto lg:mx-0 w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border border-neutral-800">
+          <Image
+            src={leadershipCoach}
+            alt="Sharon Williams — Leadership Coach to CEOs and Executives"
+            class="w-full h-full object-cover object-[center_18%]"
+            loading="lazy"
+          />
+        </div>
+        <div class="space-y-4 text-neutral-300 text-lg leading-relaxed max-w-md">
+          <p>
+            Every leadership challenge is unique. Sharon offers executive coaching and keynote addresses to
+            senior leaders across Australia and internationally — and is currently accepting new clients.
+          </p>
+          <p>Reach out to start the conversation.</p>
+        </div>
       </div>
-      <p class="text-neutral-400 text-sm">
-        Or call
-        <a href="tel:+610409377653" class="text-amber-400 hover:underline focus-ring rounded-sm">
-          +61 409 377 653
-        </a>
-      </p>
-      <div class="pt-8 border-t border-neutral-800">
-        <p class="text-neutral-400 text-sm mb-4">Inquiring about a specific program?</p>
-        <ul class="flex flex-wrap justify-center gap-4 text-sm tracking-widest uppercase">
-          <li><a href="/coaching/executive-deep-dive" class="text-amber-400 hover:underline focus-ring rounded-sm">Executive Deep Dive</a></li>
-          <li><a href="/coaching/ceo-transition" class="text-amber-400 hover:underline focus-ring rounded-sm">CEO Transition</a></li>
-          <li><a href="/coaching/team-reset" class="text-amber-400 hover:underline focus-ring rounded-sm">Team Reset</a></li>
-        </ul>
+
+      <div class="bg-neutral-900 border border-neutral-800 p-8 md:p-10 space-y-8">
+        <p class="text-neutral-300 text-lg">
+          The contact form will be available when we launch the new site. For now, book a complimentary
+          consultation or email Sharon directly.
+        </p>
+        <div class="flex flex-col gap-4">
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors text-center focus-ring"
+          >
+            Book a Complimentary Consultation
+          </a>
+          <a
+            href={MAILTO_ENQUIRY}
+            class="inline-block border border-neutral-600 hover:border-amber-400 text-neutral-200 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors text-center focus-ring"
+          >
+            Email {EMAIL}
+          </a>
+        </div>
+        <p class="text-neutral-400 text-sm">
+          Or call
+          <a href="tel:+610409377653" class="text-amber-400 hover:underline focus-ring rounded-sm">
+            +61 409 377 653
+          </a>
+        </p>
+        <div class="pt-6 border-t border-neutral-800">
+          <p class="text-neutral-400 text-sm mb-4">Inquiring about a specific program?</p>
+          <ul class="flex flex-col gap-3 text-sm tracking-widest uppercase">
+            <li>
+              <a href="/coaching/executive-deep-dive/" class="text-amber-400 hover:underline focus-ring rounded-sm">
+                Executive Deep Dive
+              </a>
+            </li>
+            <li>
+              <a href="/coaching/ceo-transition/" class="text-amber-400 hover:underline focus-ring rounded-sm">
+                CEO Transition
+              </a>
+            </li>
+            <li>
+              <a href="/coaching/team-reset/" class="text-amber-400 hover:underline focus-ring rounded-sm">
+                Team Reset
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </section>
-
-  <section>
-    <Image
-      src={leadershipCoach}
-      alt="Sharon Williams — Leadership Coach to CEOs and Executives"
-      class="w-full h-[50vh] md:h-[70vh] img-cover-top"
-      loading="lazy"
-    />
   </section>
 </Layout>
