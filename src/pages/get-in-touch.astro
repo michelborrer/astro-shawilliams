@@ -3,25 +3,21 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import heroOneStep from '../assets/images/contact-hero-one-small-step.jpg';
 import leadershipCoach from '../assets/images/contact-leadership-coach.jpg';
+import { CALENDLY_URL, EMAIL, MAILTO_ENQUIRY } from '../lib/links';
 
 const title = 'Get In Touch — Sharon Williams Psychologist';
 const description =
   'Reach out to Sharon Williams to start the conversation. Executive coaching and keynote addresses for senior leaders across Australia and internationally.';
-
-const services = [
-  { value: 'executive-deep-dive', label: 'The Executive Deep Dive' },
-  { value: 'ceo-transition-program', label: 'The CEO Transition Program' },
-  { value: 'team-reset', label: 'The High-Performance Team Reset' },
-];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} path="/get-in-touch">
   <section class="relative">
     <Image
       src={heroOneStep}
       alt="A path forward"
       class="w-full h-[60vh] md:h-[70vh] object-cover"
       loading="eager"
+      fetchpriority="high"
     />
     <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/20 to-neutral-950/80"></div>
     <div class="absolute inset-0 flex items-end">
@@ -45,93 +41,41 @@ const services = [
   </section>
 
   <section class="bg-neutral-900 py-16">
-    <div class="max-w-2xl mx-auto px-6">
-      <p class="italic text-neutral-400 text-sm mb-6 text-center">
-        Email Sharon directly at
-        <a href="mailto:sharon@shawilliams.com" class="text-amber-400 hover:underline">
-          sharon@shawilliams.com
-        </a>
-        while we finish setting this up.
+    <div class="max-w-2xl mx-auto px-6 text-center space-y-8">
+      <p class="text-neutral-300 text-lg">
+        The contact form will be available when we launch the new site. For now, book a complimentary
+        consultation or email Sharon directly.
       </p>
-      <!-- TODO: wire up contact form backend (Cloudflare Pages Functions or Formspree) -->
-      <form class="space-y-6" onsubmit="event.preventDefault()">
-        <div class="grid gap-6 sm:grid-cols-2">
-          <label class="block">
-            <span class="block text-xs tracking-widest uppercase text-neutral-400 mb-2">First name</span>
-            <input
-              type="text"
-              name="firstName"
-              required
-              class="w-full bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none"
-            />
-          </label>
-          <label class="block">
-            <span class="block text-xs tracking-widest uppercase text-neutral-400 mb-2">Last name</span>
-            <input
-              type="text"
-              name="lastName"
-              required
-              class="w-full bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none"
-            />
-          </label>
-        </div>
-
-        <label class="block">
-          <span class="block text-xs tracking-widest uppercase text-neutral-400 mb-2">Email</span>
-          <input
-            type="email"
-            name="email"
-            required
-            class="w-full bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none"
-          />
-        </label>
-
-        <label class="block">
-          <span class="block text-xs tracking-widest uppercase text-neutral-400 mb-2">Subject</span>
-          <input
-            type="text"
-            name="subject"
-            required
-            class="w-full bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none"
-          />
-        </label>
-
-        <fieldset>
-          <legend class="block text-xs tracking-widest uppercase text-neutral-400 mb-3">
-            Inquiring about
-          </legend>
-          <div class="space-y-2">
-            {services.map((service) => (
-              <label class="flex items-center gap-3 cursor-pointer">
-                <input
-                  type="radio"
-                  name="service"
-                  value={service.value}
-                  class="accent-amber-500"
-                />
-                <span class="text-neutral-200">{service.label}</span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        <label class="block">
-          <span class="block text-xs tracking-widest uppercase text-neutral-400 mb-2">Message</span>
-          <textarea
-            name="message"
-            required
-            rows="6"
-            class="w-full bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none resize-y"
-          ></textarea>
-        </label>
-
-        <button
-          type="submit"
-          class="w-full bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold py-3 text-sm tracking-widest uppercase transition-colors"
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={CALENDLY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
         >
-          Submit
-        </button>
-      </form>
+          Book a Complimentary Consultation
+        </a>
+        <a
+          href={MAILTO_ENQUIRY}
+          class="inline-block border border-neutral-600 hover:border-amber-400 text-neutral-200 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
+        >
+          Email {EMAIL}
+        </a>
+      </div>
+      <p class="text-neutral-400 text-sm">
+        Or call
+        <a href="tel:+610409377653" class="text-amber-400 hover:underline focus-ring rounded-sm">
+          +61 409 377 653
+        </a>
+      </p>
+      <div class="pt-8 border-t border-neutral-800">
+        <p class="text-neutral-400 text-sm mb-4">Inquiring about a specific program?</p>
+        <ul class="flex flex-wrap justify-center gap-4 text-sm tracking-widest uppercase">
+          <li><a href="/coaching/executive-deep-dive" class="text-amber-400 hover:underline focus-ring rounded-sm">Executive Deep Dive</a></li>
+          <li><a href="/coaching/ceo-transition" class="text-amber-400 hover:underline focus-ring rounded-sm">CEO Transition</a></li>
+          <li><a href="/coaching/team-reset" class="text-amber-400 hover:underline focus-ring rounded-sm">Team Reset</a></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -140,6 +84,7 @@ const services = [
       src={leadershipCoach}
       alt="Sharon Williams — Leadership Coach to CEOs and Executives"
       class="w-full h-[50vh] md:h-[70vh] object-cover"
+      loading="lazy"
     />
   </section>
 </Layout>

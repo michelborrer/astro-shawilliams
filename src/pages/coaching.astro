@@ -2,131 +2,23 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import heroChess from '../assets/images/coaching-hero-chess.jpg';
-import deepDivePortrait from '../assets/images/coaching-deep-dive-portrait.jpg';
-import flightLeadership from '../assets/images/coaching-flight-leadership.jpg';
-import teamImage from '../assets/images/coaching-team.jpg';
 import standOut from '../assets/images/coaching-stand-out.jpg';
+import CoachingProgramSection from '../components/CoachingProgramSection.astro';
+import { coachingPrograms, howIWork, coachingOutcomes } from '../data/coaching';
 
 const title = 'Coaching — Sharon Williams Psychologist';
 const description =
   'Executive coaching for CEOs and C-suite leaders: the Executive Deep Dive, the CEO Transition Program, and the High-Performance Team Reset — psychometric diagnostics, derailer identification, and sustained advisory.';
-
-const howIWork = [
-  {
-    title: 'Diagnostic',
-    body:
-      "I don't start with your goals. I start with your data. A clinical psychometric assessment battery, 360-degree feedback, and stakeholder interviews, designed to reveal the behavioural patterns that no amount of self-reflection can reach.",
-  },
-  {
-    title: 'Precise',
-    body:
-      'I identify your specific derailers, the traits that surface under pressure and silently erode trust, judgement, and team performance. Every strategy is built around what the data reveals. Not a development plan. A diagnostic intervention.',
-  },
-  {
-    title: 'Sustained',
-    body:
-      'Insight alone changes nothing. I work alongside you as the patterns surface in real time — in the boardroom, in difficult conversations, in the moments that define your leadership. Then I reassess using the same measures to prove the shift has taken root.',
-  },
-];
-
-type Service = {
-  title: string;
-  subtitle: string;
-  image: ImageMetadata;
-  imageAlt: string;
-  who: string[];
-  included: string[];
-  ctaLabel: string;
-  ctaHref: string;
-};
-
-const services: Service[] = [
-  {
-    title: 'Executive Deep Dive',
-    subtitle: 'For the leader who needs to know what no one else will tell them.',
-    image: deepDivePortrait,
-    imageAlt: 'Sharon Williams at her desk',
-    who: [
-      "You're a high-performing CEO, C-suite executive, or senior director, and something isn't landing the way it should.",
-      'On paper, everything looks right. In practice, something is costing you.',
-      'People are managing around you, not with you — and no one will tell you why.',
-      "You don't have a performance problem. You have a derailer you can't see. This is what I was trained to find.",
-    ],
-    included: [
-      'Psychometric assessment battery, including 360-degree review and derailer identification',
-      'Stakeholder interviews',
-      'Diagnostic debrief and written report',
-      'Targeted intervention strategy',
-      '1:1 advisory sessions (typically 6–12 months)',
-      'Reassessment to confirm behavioural shift',
-    ],
-    ctaLabel: 'Book a Complimentary Consultation',
-    ctaHref:
-      'mailto:Sha@shawilliams.com?subject=I%20am%20interested%20in%20a%20Complimentary%20Consultation',
-  },
-  {
-    title: 'The CEO Transition Program',
-    subtitle: 'For the leader stepping into a role where the margin for error is zero.',
-    image: flightLeadership,
-    imageAlt: 'Flight leadership course',
-    who: [
-      "You've just been appointed to a CEO, Managing Director, or senior executive role, or you will be within the next quarter.",
-      "The board is watching. Your new team is forming first impressions before you've had your second meeting. The organisation expects you to hit the ground running, but the traits that earned you this role aren't necessarily the ones that will make you succeed in it.",
-      'The first 100 days will define your tenure. This is where I come in.',
-    ],
-    included: [
-      'Psychometric assessment battery including derailer identification',
-      'Stakeholder mapping and political landscape analysis',
-      'Psychologically-informed 100-Day Plan',
-      'Fortnightly 1:1 advisory sessions across the first 100 days',
-      'Real-time counsel on critical early decisions',
-      'Post-transition review and forward strategy',
-    ],
-    ctaLabel: 'Find Out More',
-    ctaHref:
-      'mailto:sha@shawilliams.com?subject=Please%20Send%20me%20the%20Leadership%20in%20Flight%20Brochure',
-  },
-  {
-    title: 'The High-Performance Team Reset',
-    subtitle:
-      "For the leadership team that's either your greatest asset or your biggest risk. I help you determine which, and act accordingly.",
-    image: teamImage,
-    imageAlt: 'Senior leadership team',
-    who: [
-      'You lead, or sit on, a senior leadership team that looks capable on paper but operates in silos, avoids accountability, and defaults to politics over strategy.',
-      "Offsites produce energy that evaporates by Monday. Consultants have come and gone. The dysfunction persists — because no one has diagnosed what's actually driving it. You don't need another team-building exercise.",
-      'You need a psychologist. This is where the diagnostic begins.',
-    ],
-    included: [
-      'Psychometric assessment of each team member including derailer identification',
-      '360-degree feedback across the team',
-      '1:1 diagnostic debriefs with each leader',
-      'Team dynamics mapping and risk analysis',
-      'Facilitated team recalibration sessions',
-      'Advisory to embed new operating rhythms (typically 6–12 months)',
-    ],
-    ctaLabel: 'Find Out More',
-    ctaHref:
-      'mailto:sha@shawilliams.com?subject=Please%20Send%20me%20the%20Leadership%20in%20Flight%20Brochure',
-  },
-];
-
-const outcomes = [
-  "They understand how they're perceived, through data, not guesswork",
-  'They stop triggering the reactions they never intended',
-  'They build teams on trust and accountability, not politics and avoidance',
-  'They make decisions under pressure without reverting to old patterns',
-  "They sustain the change, because it's built on awareness, not willpower",
-];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} path="/coaching" schemaType="person">
   <section class="relative">
     <Image
       src={heroChess}
       alt="Chess pieces"
       class="w-full h-[60vh] md:h-[70vh] object-cover"
       loading="eager"
+      fetchpriority="high"
     />
     <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/20 to-neutral-950/80"></div>
     <div class="absolute inset-0 flex items-end">
@@ -134,6 +26,9 @@ const outcomes = [
         <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl tracking-tight max-w-4xl">
           EXECUTIVE coaching
         </h1>
+        <p class="mt-4 text-lg text-neutral-300 max-w-2xl">
+          Psychometric diagnostics and sustained advisory for CEOs and C-suite leaders across Australia.
+        </p>
       </div>
     </div>
   </section>
@@ -152,45 +47,14 @@ const outcomes = [
     </div>
   </section>
 
-  {services.map((service, i) => {
-    const reversed = i % 2 === 1;
-    return (
-      <section class={`py-20 ${i % 2 === 0 ? 'bg-neutral-950' : 'bg-neutral-900'}`}>
-        <div class="max-w-6xl mx-auto px-6 grid gap-10 md:gap-16 md:grid-cols-2 items-center">
-          <div class={reversed ? 'md:order-2' : ''}>
-            <Image src={service.image} alt={service.imageAlt} class="w-full aspect-[4/5] object-cover" />
-          </div>
-          <div class="space-y-6">
-            <div>
-              <h3 class="font-serif text-3xl md:text-4xl">{service.title}</h3>
-              <p class="italic text-neutral-400 mt-2">{service.subtitle}</p>
-            </div>
-            <div>
-              <h4 class="text-xs tracking-widest uppercase text-amber-400 mb-3">Who this is for</h4>
-              <div class="space-y-3 text-neutral-300 leading-relaxed">
-                {service.who.map((p) => <p>{p}</p>)}
-              </div>
-            </div>
-            <div>
-              <h4 class="text-xs tracking-widest uppercase text-amber-400 mb-3">What's included</h4>
-              <ul class="space-y-2 text-neutral-300 list-disc pl-5">
-                {service.included.map((item) => <li>{item}</li>)}
-              </ul>
-            </div>
-            <a
-              href={service.ctaHref}
-              class="inline-block bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-6 py-3 text-sm tracking-widest uppercase transition-colors"
-            >
-              {service.ctaLabel}
-            </a>
-          </div>
-        </div>
-      </section>
-    );
-  })}
+  {coachingPrograms.map((program, i) => (
+    <div class={i % 2 === 0 ? 'bg-neutral-950' : 'bg-neutral-900'}>
+      <CoachingProgramSection program={program} reversed={i % 2 === 1} />
+    </div>
+  ))}
 
   <section class="relative">
-    <Image src={standOut} alt="Stand out from the crowd" class="w-full h-[40vh] md:h-[55vh] object-cover" />
+    <Image src={standOut} alt="Stand out from the crowd" class="w-full h-[40vh] md:h-[55vh] object-cover" loading="lazy" />
     <div class="absolute inset-0 bg-neutral-950/40"></div>
   </section>
 
@@ -201,12 +65,17 @@ const outcomes = [
         "When the diagnostic work is done, my clients don't just perform better, they lead differently."
       </blockquote>
       <ul class="space-y-4 text-neutral-300 text-lg list-disc pl-5">
-        {outcomes.map((outcome) => <li>{outcome}</li>)}
+        {coachingOutcomes.map((outcome) => <li>{outcome}</li>)}
       </ul>
       <blockquote class="font-serif text-2xl md:text-3xl leading-relaxed italic text-center text-amber-400">
         "This isn't about becoming a different leader, it's about removing what's in the way of the
         leader you already are."
       </blockquote>
+      <p class="text-center">
+        <a href="/about-sharon" class="text-amber-400 text-sm tracking-widest uppercase hover:underline focus-ring rounded-sm">
+          About Sharon's credentials &rarr;
+        </a>
+      </p>
     </div>
   </section>
 </Layout>

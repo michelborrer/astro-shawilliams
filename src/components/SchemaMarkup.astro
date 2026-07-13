@@ -1,0 +1,99 @@
+---
+import { EMAIL, PHONE, SITE_NAME, SITE_URL } from '../lib/site';
+import { CALENDLY_URL } from '../lib/links';
+
+interface Props {
+  type?: 'home' | 'person' | 'video' | 'service';
+  video?: {
+    title: string;
+    description: string;
+    youtubeId: string;
+    slug: string;
+    published?: string;
+  };
+  service?: {
+    name: string;
+    description: string;
+    slug: string;
+  };
+}
+
+const { type = 'home', video, service } = Astro.props;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Sharon Williams',
+  jobTitle: 'Registered Psychologist & Executive Coach',
+  description:
+    'Psychologist and trusted advisor to CEOs and C-suite executives across Australia, specialising in psychometric assessment and leadership derailer identification.',
+  url: SITE_URL,
+  email: EMAIL,
+  telephone: PHONE,
+  sameAs: [
+    'https://www.youtube.com/channel/UCB0oD6fi8Tb3xvp9aFtmIhQ',
+    'https://au.linkedin.com/in/sharon-williams-65096b8',
+    'https://instagram.com/sha_williams_exec_coach',
+    'https://facebook.com/shashawilliams',
+  ],
+  knowsAbout: [
+    'Executive coaching',
+    'Leadership psychology',
+    'Psychometric assessment',
+    'CEO transition',
+    'Leadership team development',
+  ],
+};
+
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: SITE_NAME,
+  url: SITE_URL,
+  description:
+    'Executive coaching and psychological assessment for CEOs and C-suite leaders in Australia.',
+  email: EMAIL,
+  telephone: PHONE,
+  areaServed: 'AU',
+  priceRange: '$$$$',
+  founder: { '@type': 'Person', name: 'Sharon Williams' },
+  sameAs: personSchema.sameAs,
+  potentialAction: {
+    '@type': 'ReserveAction',
+    target: CALENDLY_URL,
+    name: 'Book a Complimentary Consultation',
+  },
+};
+
+const schemas: Record<string, unknown>[] = [personSchema, businessSchema];
+
+if (type === 'video' && video) {
+  schemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: video.title,
+    description: video.description,
+    thumbnailUrl: `https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`,
+    embedUrl: `https://www.youtube.com/embed/${video.youtubeId}`,
+    contentUrl: `https://www.youtube.com/watch?v=${video.youtubeId}`,
+    uploadDate: video.published,
+    url: new URL(`/videos/${video.slug}`, SITE_URL).href,
+    publisher: { '@type': 'Person', name: 'Sharon Williams' },
+  });
+}
+
+if (type === 'service' && service) {
+  schemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.name,
+    description: service.description,
+    provider: { '@type': 'Person', name: 'Sharon Williams' },
+    url: new URL(`/coaching/${service.slug}`, SITE_URL).href,
+    areaServed: 'AU',
+    audience: { '@type': 'Audience', audienceType: 'CEOs and C-suite executives' },
+  });
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemas)} />

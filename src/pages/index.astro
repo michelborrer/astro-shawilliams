@@ -1,4 +1,5 @@
 ---
+import type { ImageMetadata } from 'astro';
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import heroGlassCeiling from '../assets/images/hero-glass-ceiling.jpg';
@@ -7,61 +8,41 @@ import sydneyHarbourBridge from '../assets/images/sydney-harbour-bridge.jpg';
 import videoDarkSide from '../assets/images/video-dark-side.jpg';
 import videoStrategy from '../assets/images/video-strategy.jpg';
 import videoEliteRowers from '../assets/images/video-elite-rowers.jpg';
+import { coachingPrograms } from '../data/coaching';
+import { videos } from '../data/videos';
+import { CALENDLY_URL } from '../lib/links';
 
-const services = [
-  {
-    title: 'The Executive Deep Dive',
-    body: [
-      'The traits that drove your success become liabilities under pressure.',
-      'I find them before they find you — through psychological assessment, not guesswork.',
-    ],
-  },
-  {
-    title: 'The CEO Transition Program',
-    body: [
-      'The first 100 days define your leadership legacy.',
-      'Start with a psychologist in your corner.',
-    ],
-  },
-  {
-    title: 'The High-Performance Team Reset',
-    body: [
-      'Your leadership team should be your greatest asset.',
-      "Right now, it's probably your biggest risk.",
-    ],
-  },
+const featuredVideoSlugs = [
+  'how-your-dark-side-can-self-sabotage-your-leadership',
+  'why-strategy-time-should-be-your-priority',
+  'why-elite-performers-have-a-morning-routine',
+  'recovery-time',
 ];
 
-const videos = [
-  {
-    title: 'How Your Dark Side Can Self-Sabotage Your Leadership',
-    image: videoDarkSide,
-    href: 'https://www.shawilliams.com/videos/v/how-your-dark-side-can-self-sabotage-your-leadership?categoryId=630b41d73cbabd2b2666d8ec',
-  },
-  {
-    title: 'Why Strategy Time Should be your Priority',
-    image: videoStrategy,
-    href: 'https://www.shawilliams.com/videos/v/why-strategy-time-should-be-your-priority',
-  },
-  {
-    title: 'Why Elite Performers have a Morning Routine',
-    image: videoEliteRowers,
-    href: 'https://www.shawilliams.com/videos/v/why-elite-performers-have-a-morning-routine',
-  },
-];
+const featuredImages: Record<string, ImageMetadata> = {
+  'how-your-dark-side-can-self-sabotage-your-leadership': videoDarkSide,
+  'why-strategy-time-should-be-your-priority': videoStrategy,
+  'why-elite-performers-have-a-morning-routine': videoEliteRowers,
+};
+
+const featuredVideos = featuredVideoSlugs
+  .map((slug) => videos.find((v) => v.slug === slug))
+  .filter((v): v is (typeof videos)[number] => Boolean(v));
 ---
 
-<Layout>
+<Layout schemaType="person">
   <section class="relative">
     <Image
       src={heroGlassCeiling}
       alt="Glass ceiling viewed from below"
       class="w-full h-[calc(100vh-80px)] object-cover"
       loading="eager"
+      fetchpriority="high"
     />
     <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/20 to-neutral-950/80"></div>
     <div class="absolute inset-0 flex items-end">
       <div class="max-w-7xl mx-auto px-6 pb-12 md:pb-16 w-full">
+        <p class="sr-only">Executive psychologist and coach for CEOs and C-suite leaders in Australia</p>
         <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl lowercase tracking-tight max-w-4xl">
           what made you successful is now holding you back
         </h1>
@@ -79,7 +60,8 @@ const videos = [
     <Image
       src={executiveCoach}
       alt="Sharon Williams, executive coach"
-      class="w-full h-[60vh] md:h-[80vh] object-cover"
+      class="w-full h-[50vh] md:h-[80vh] object-cover"
+      loading="lazy"
     />
     <div class="absolute inset-0 bg-neutral-950/60"></div>
     <div class="absolute inset-0 flex items-center justify-center">
@@ -89,7 +71,7 @@ const videos = [
         </blockquote>
         <a
           href="/about-sharon"
-          class="inline-block mt-10 bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors"
+          class="inline-block mt-10 bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
         >
           About Sharon
         </a>
@@ -105,14 +87,18 @@ const videos = [
       <p class="font-serif text-2xl md:text-3xl leading-relaxed text-neutral-300">
         I help you identify and coach the self-sabotaging behaviours you cannot see in yourself.
       </p>
+      <a href="/coaching" class="inline-block text-amber-400 text-sm tracking-widest uppercase hover:underline focus-ring rounded-sm">
+        Explore coaching programs &rarr;
+      </a>
     </div>
   </section>
 
-  <section class="relative">
+  <section class="relative" aria-hidden="true">
     <Image
       src={sydneyHarbourBridge}
-      alt="Sydney Harbour Bridge at dusk"
-      class="w-full h-[40vh] md:h-[50vh] object-cover"
+      alt=""
+      class="w-full h-[30vh] md:h-[50vh] object-cover"
+      loading="lazy"
     />
     <div class="absolute inset-0 bg-neutral-950/40"></div>
   </section>
@@ -120,15 +106,15 @@ const videos = [
   <section class="bg-neutral-900 py-24">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid gap-10 md:gap-8 md:grid-cols-3">
-        {services.map((service) => (
+        {coachingPrograms.map((program) => (
           <article class="bg-neutral-950 border border-neutral-800 p-8 flex flex-col">
-            <h2 class="font-serif text-2xl md:text-3xl text-amber-400 mb-6">{service.title}</h2>
+            <h2 class="font-serif text-2xl md:text-3xl text-amber-400 mb-6">{program.shortTitle}</h2>
             <div class="space-y-4 text-neutral-300 flex-1">
-              {service.body.map((line) => <p>{line}</p>)}
+              <p>{program.subtitle}</p>
             </div>
             <a
-              href="/coaching"
-              class="inline-block mt-8 self-start bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-6 py-2.5 text-sm tracking-widest uppercase transition-colors"
+              href={`/coaching/${program.slug}`}
+              class="inline-block mt-8 self-start bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-6 py-2.5 text-sm tracking-widest uppercase transition-colors focus-ring"
             >
               Learn More
             </a>
@@ -142,29 +128,45 @@ const videos = [
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="font-serif text-3xl md:text-4xl mb-10 text-center">Resources</h2>
       <div class="overflow-x-auto -mx-6 px-6 pb-4">
-        <div class="flex gap-6 snap-x snap-mandatory min-w-max md:min-w-0 md:grid md:grid-cols-3">
-          {videos.map((video) => (
-            <a
-              href={video.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group snap-start shrink-0 w-80 md:w-auto bg-neutral-900 border border-neutral-800 hover:border-amber-500 transition-colors flex flex-col"
-            >
-              <div class="aspect-video overflow-hidden">
-                <Image
-                  src={video.image}
-                  alt={video.title}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div class="p-6 flex-1 flex flex-col">
-                <h3 class="font-serif text-xl mb-4 flex-1">{video.title}</h3>
-                <span class="text-amber-400 text-sm tracking-widest uppercase">Read More &rarr;</span>
-              </div>
-            </a>
-          ))}
+        <div class="flex gap-6 snap-x snap-mandatory min-w-max md:min-w-0 md:grid md:grid-cols-2 lg:grid-cols-4">
+          {featuredVideos.map((video) => {
+            const localImage = featuredImages[video.slug];
+            return (
+              <a
+                href={`/videos/${video.slug}`}
+                class="group snap-start shrink-0 w-80 md:w-auto bg-neutral-900 border border-neutral-800 hover:border-amber-500 transition-colors flex flex-col focus-ring"
+              >
+                <div class="aspect-video overflow-hidden motion-safe-hover-scale">
+                  {localImage ? (
+                    <Image
+                      src={localImage}
+                      alt=""
+                      class="w-full h-full object-cover transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <img
+                      src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`}
+                      alt=""
+                      loading="lazy"
+                      class="w-full h-full object-cover transition-transform duration-500"
+                    />
+                  )}
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                  <h3 class="font-serif text-xl mb-4 flex-1">{video.title}</h3>
+                  <span class="text-amber-400 text-sm tracking-widest uppercase">Watch video &rarr;</span>
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
+      <p class="text-center mt-8">
+        <a href="/videos" class="text-amber-400 text-sm tracking-widest uppercase hover:underline focus-ring rounded-sm">
+          View all videos &rarr;
+        </a>
+      </p>
     </div>
   </section>
 
@@ -175,30 +177,26 @@ const videos = [
         Psychological insights on leadership blind spots, derailers, and the mindset shifts that
         separate good leaders from exceptional ones.
       </p>
-      <!-- TODO: wire up newsletter backend -->
-      <form class="grid gap-4 sm:grid-cols-2 max-w-xl mx-auto" onsubmit="event.preventDefault()">
-        <input
-          type="text"
-          placeholder="First name"
-          class="bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none"
-        />
-        <input
-          type="text"
-          placeholder="Last name"
-          class="bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none"
-        />
-        <input
-          type="email"
-          placeholder="Email address"
-          class="sm:col-span-2 bg-neutral-950 border border-neutral-700 px-4 py-3 focus:border-amber-500 focus:outline-none"
-        />
-        <button
-          type="submit"
-          class="sm:col-span-2 bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold py-3 text-sm tracking-widest uppercase transition-colors"
+      <p class="text-neutral-400 mb-8">
+        Newsletter sign-up is coming when we launch the new site. In the meantime, explore video
+        resources or book a complimentary consultation.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/videos"
+          class="inline-block border border-neutral-600 hover:border-amber-400 text-neutral-200 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
         >
-          Subscribe
-        </button>
-      </form>
+          Watch videos
+        </a>
+        <a
+          href={CALENDLY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
+        >
+          Book a consultation
+        </a>
+      </div>
     </div>
   </section>
 </Layout>

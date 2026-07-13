@@ -12,7 +12,7 @@ const description =
   'Sharon Williams is a Registered Psychologist and Trusted Advisor to CEOs and C-suite executives across Australia, with over 20 years of experience using clinical-grade psychological assessment to uncover hidden leadership derailers.';
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} path="/about-sharon" schemaType="person">
   <section class="relative">
     <Image
       src={heroPortrait}
@@ -51,9 +51,15 @@ const description =
           href={CALENDLY_URL}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-block bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-6 py-3 text-sm tracking-widest uppercase transition-colors"
+          class="inline-block bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-6 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
         >
           Book a Complimentary Consultation
+        </a>
+        <a
+          href="/coaching"
+          class="inline-block border border-neutral-600 hover:border-amber-400 text-neutral-200 font-semibold px-6 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
+        >
+          View coaching programs
         </a>
       </div>
     </div>

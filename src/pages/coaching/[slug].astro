@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { coachingPrograms } from '../../data/coaching';
+import { CALENDLY_URL } from '../../lib/links';
+
+export function getStaticPaths() {
+  return coachingPrograms.map((program) => ({
+    params: { slug: program.slug },
+    props: { program },
+  }));
+}
+
+const { program } = Astro.props;
+const title = `${program.title} — Sharon Williams Psychologist`;
+---
+
+<Layout
+  title={title}
+  description={program.metaDescription}
+  path={`/coaching/${program.slug}`}
+  schemaType="service"
+  schemaService={{
+    name: program.title,
+    description: program.metaDescription,
+    slug: program.slug,
+  }}
+>
+  <section class="bg-neutral-900 py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-6">
+      <nav class="text-sm text-neutral-400 mb-6" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap gap-2 items-center">
+          <li><a href="/" class="hover:text-amber-400 focus-ring rounded-sm">Home</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/coaching" class="hover:text-amber-400 focus-ring rounded-sm">Coaching</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-neutral-200">{program.title}</li>
+        </ol>
+      </nav>
+      <h1 class="font-serif text-4xl md:text-6xl mb-4">{program.title}</h1>
+      <p class="italic text-neutral-400 text-xl">{program.subtitle}</p>
+    </div>
+  </section>
+
+  <section class="bg-neutral-950 py-16">
+    <div class="max-w-6xl mx-auto px-6 grid gap-12 md:grid-cols-2 items-start">
+      <Image src={program.image} alt={program.imageAlt} class="w-full aspect-[4/5] object-cover" loading="eager" />
+      <div class="space-y-8">
+        <div>
+          <h2 class="text-xs tracking-widest uppercase text-amber-400 mb-3">Who this is for</h2>
+          <div class="space-y-3 text-neutral-300 leading-relaxed">
+            {program.who.map((p) => <p>{p}</p>)}
+          </div>
+        </div>
+        <div>
+          <h2 class="text-xs tracking-widest uppercase text-amber-400 mb-3">What's included</h2>
+          <ul class="space-y-2 text-neutral-300 list-disc pl-5">
+            {program.included.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-6 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
+          >
+            Book a Complimentary Consultation
+          </a>
+          <a
+            href="/get-in-touch"
+            class="inline-block border border-neutral-600 hover:border-amber-400 text-neutral-200 font-semibold px-6 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
+          >
+            Get in touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-900 py-16">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="font-serif text-2xl md:text-3xl mb-6">Other programs</h2>
+      <ul class="flex flex-wrap justify-center gap-4 text-sm tracking-widest uppercase">
+        {coachingPrograms
+          .filter((p) => p.slug !== program.slug)
+          .map((p) => (
+            <li>
+              <a href={`/coaching/${p.slug}`} class="text-amber-400 hover:underline focus-ring rounded-sm">
+                {p.shortTitle}
+              </a>
+            </li>
+          ))}
+      </ul>
+      <p class="mt-8">
+        <a href="/about-sharon" class="text-neutral-300 hover:text-amber-400 focus-ring rounded-sm">
+          Learn about Sharon's approach &rarr;
+        </a>
+      </p>
+    </div>
+  </section>
+</Layout>

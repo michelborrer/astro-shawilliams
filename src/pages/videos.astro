@@ -2,121 +2,21 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import heroFlight from '../assets/images/videos-hero-leadership-flight.jpg';
+import { videos, videoCategories } from '../data/videos';
 
 const title = 'Videos — Sharon Williams Psychologist';
 const description =
   'Short video lessons on leadership, performance and decision-making from Sharon Williams: Leadership Strategy & Performance and Leadership Lessons from the Cockpit.';
-
-type Category = 'Leadership Strategy & Performance' | 'Leadership Lessons from the Cockpit';
-
-type Video = {
-  id: number;
-  title: string;
-  category: Category;
-  youtubeId: string;
-  detailUrl: string;
-};
-
-const videos: Video[] = [
-  {
-    id: 1,
-    title: 'Cognitive Fatigue',
-    category: 'Leadership Strategy & Performance',
-    youtubeId: 'K71vVlfOJ_c',
-    detailUrl: 'https://shawilliams.com/videos/v/cognitive-fatigue',
-  },
-  {
-    id: 2,
-    title: 'When ego and optimism are not your friends',
-    category: 'Leadership Lessons from the Cockpit',
-    youtubeId: 'pTOwCyjpNVk',
-    detailUrl: 'https://shawilliams.com/videos/v/when-ego-and-optimism-are-not-your-friends',
-  },
-  {
-    id: 3,
-    title: 'Why Strategy Time Should be your Priority',
-    category: 'Leadership Strategy & Performance',
-    youtubeId: '0BI3MtGz4jQ',
-    detailUrl: 'https://shawilliams.com/videos/v/why-strategy-time-should-be-your-priority',
-  },
-  {
-    id: 4,
-    title: 'Faking it vs Persistence',
-    category: 'Leadership Lessons from the Cockpit',
-    youtubeId: '407F1ask3TE',
-    detailUrl: 'https://shawilliams.com/videos/v/faking-it-vs-persistence',
-  },
-  {
-    id: 5,
-    title: 'How Your Dark Side Can Self-Sabotage Your Leadership',
-    category: 'Leadership Strategy & Performance',
-    youtubeId: 'xe60kd6sl0I',
-    detailUrl: 'https://shawilliams.com/videos/v/how-your-dark-side-can-self-sabotage-your-leadership',
-  },
-  {
-    id: 6,
-    title: 'Make a decision',
-    category: 'Leadership Lessons from the Cockpit',
-    youtubeId: 'f_b3H5cqnUI',
-    detailUrl: 'https://shawilliams.com/videos/v/make-a-decision',
-  },
-  {
-    id: 7,
-    title: 'When you really truly believe…',
-    category: 'Leadership Lessons from the Cockpit',
-    youtubeId: 'm7XTS7C4zXk',
-    detailUrl: 'https://shawilliams.com/videos/v/when-you-really-truly-believe',
-  },
-  {
-    id: 8,
-    title: 'Why Elite Performers have a Morning Routine',
-    category: 'Leadership Strategy & Performance',
-    youtubeId: '5n23lD-Xtss',
-    detailUrl: 'https://shawilliams.com/videos/v/why-elite-performers-have-a-morning-routine',
-  },
-  {
-    id: 9,
-    title: 'Do the work!',
-    category: 'Leadership Lessons from the Cockpit',
-    youtubeId: 'W7n5e0wDV1A',
-    detailUrl: 'https://shawilliams.com/videos/v/do-the-work',
-  },
-  {
-    id: 10,
-    title: 'Just fix it! Immediately.',
-    category: 'Leadership Lessons from the Cockpit',
-    youtubeId: 'JO8cE0cz2tY',
-    detailUrl: 'https://shawilliams.com/videos/v/just-fix-it-immediately',
-  },
-  {
-    id: 11,
-    title: 'Recovery Time',
-    category: 'Leadership Strategy & Performance',
-    youtubeId: 'vF9Ql2nEpaI',
-    detailUrl: 'https://shawilliams.com/videos/v/recovery-time',
-  },
-  {
-    id: 12,
-    title: 'Do You Make Your Bed?',
-    category: 'Leadership Strategy & Performance',
-    youtubeId: '6n0EqOLHR04',
-    detailUrl: 'https://shawilliams.com/videos/v/do-you-make-your-bed',
-  },
-];
-
-const categories: Category[] = [
-  'Leadership Strategy & Performance',
-  'Leadership Lessons from the Cockpit',
-];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} path="/videos">
   <section class="relative">
     <Image
       src={heroFlight}
       alt="Leadership in Flight Programme"
       class="w-full h-[60vh] md:h-[70vh] object-cover"
       loading="eager"
+      fetchpriority="high"
     />
     <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/20 to-neutral-950/80"></div>
     <div class="absolute inset-0 flex items-end">
@@ -124,11 +24,14 @@ const categories: Category[] = [
         <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl tracking-tight max-w-4xl">
           Shorts from Sharon
         </h1>
+        <p class="mt-4 text-lg text-neutral-300 max-w-2xl">
+          Leadership insights on strategy, performance, and the psychology of exceptional executives.
+        </p>
       </div>
     </div>
   </section>
 
-  {categories.map((category) => {
+  {videoCategories.map((category) => {
     const items = videos.filter((v) => v.category === category);
     return (
       <section class="bg-neutral-950 py-20 border-b border-neutral-900 last:border-b-0">
@@ -137,28 +40,25 @@ const categories: Category[] = [
           <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {items.map((video) => (
               <article class="bg-neutral-900 border border-neutral-800 hover:border-amber-500 transition-colors flex flex-col">
-                <a
-                  href={video.detailUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="block aspect-video overflow-hidden"
-                >
+                <a href={`/videos/${video.slug}`} class="block aspect-video overflow-hidden motion-safe-hover-scale focus-ring">
                   <img
                     src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`}
-                    alt={video.title}
+                    alt=""
                     loading="lazy"
-                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    class="w-full h-full object-cover transition-transform duration-500"
                   />
                 </a>
                 <div class="p-6 flex-1 flex flex-col gap-4">
-                  <h3 class="font-serif text-xl flex-1">{video.title}</h3>
+                  <h3 class="font-serif text-xl flex-1">
+                    <a href={`/videos/${video.slug}`} class="hover:text-amber-400 focus-ring rounded-sm">
+                      {video.title}
+                    </a>
+                  </h3>
                   <a
-                    href={video.detailUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-amber-400 text-sm tracking-widest uppercase self-start"
+                    href={`/videos/${video.slug}`}
+                    class="text-amber-400 text-sm tracking-widest uppercase self-start focus-ring rounded-sm"
                   >
-                    Watch on YouTube &rarr;
+                    Watch video &rarr;
                   </a>
                 </div>
               </article>
@@ -168,4 +68,19 @@ const categories: Category[] = [
       </section>
     );
   })}
+
+  <section class="bg-neutral-900 py-16">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <p class="text-neutral-300 mb-6">
+        Ready to go deeper? Sharon's coaching programs use clinical-grade assessment to uncover the
+        derailers these videos describe.
+      </p>
+      <a
+        href="/coaching"
+        class="inline-block bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
+      >
+        Explore coaching
+      </a>
+    </div>
+  </section>
 </Layout>

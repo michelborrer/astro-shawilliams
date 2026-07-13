@@ -1,0 +1,26 @@
+---
+interface Props {
+  href: string;
+  match?: 'exact' | 'prefix';
+  class?: string;
+}
+
+const { href, match = 'exact', class: className = '' } = Astro.props;
+const pathname = Astro.url.pathname;
+const isActive =
+  match === 'exact'
+    ? pathname === href || (href !== '/' && pathname === href)
+    : pathname === href || pathname.startsWith(`${href}/`);
+
+const base =
+  'hover:text-amber-400 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400';
+const active = isActive ? 'text-amber-400' : '';
+---
+
+<a
+  href={href}
+  class:list={[base, active, className]}
+  aria-current={isActive ? 'page' : undefined}
+>
+  <slot />
+</a>
