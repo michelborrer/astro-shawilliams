@@ -1,19 +1,7 @@
-# Production cutover redirects (shawilliams.com → Astro)
-# Enable when pointing the custom domain at Cloudflare Pages.
-
-/about                    /about-sharon             301
-/about/                   /about-sharon             301
-/contact                  /get-in-touch             301
-/contact/                 /get-in-touch             301
-/coaching/                /coaching                 301
-/videos/                  /videos                   301
-/videos/v/:slug           /videos/:slug             301
-/videos/v/:slug/          /videos/:slug             301
-
-# Trailing-slash normalisation
-/about-sharon/            /about-sharon             301
-/coaching/executive-deep-dive/  /coaching/executive-deep-dive  301
-/coaching/ceo-transition/       /coaching/ceo-transition       301
-/coaching/team-reset/           /coaching/team-reset           301
-/get-in-touch/            /get-in-touch             301
-/privacy-policy/          /privacy-policy           301
+# Old Wix URL migrations (enable at shawilliams.com cutover)
+/about                    /about-sharon/            301
+/about/                   /about-sharon/            301
+/contact                  /get-in-touch/            301
+/contact/                 /get-in-touch/            301
+/videos/v/:slug           /videos/:slug/            301
+/videos/v/:slug/          /videos/:slug/            301

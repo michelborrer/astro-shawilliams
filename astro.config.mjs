@@ -7,6 +7,7 @@ const site = process.env.SITE_URL ?? 'https://astro-shawilliams.pages.dev';
 
 export default defineConfig({
   site,
+  trailingSlash: 'always',
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/404'),
