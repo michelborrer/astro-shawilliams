@@ -40,14 +40,14 @@ const ogImage = `https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`;
       <div class="max-w-4xl mx-auto px-6">
         <nav class="text-sm text-neutral-400 mb-6" aria-label="Breadcrumb">
           <ol class="flex flex-wrap gap-2 items-center">
-            <li><a href="/" class="hover:text-amber-400 focus-ring rounded-sm">Home</a></li>
+            <li><a href="/" class="hover:text-white focus-ring rounded-sm">Home</a></li>
             <li aria-hidden="true">/</li>
-            <li><a href="/videos" class="hover:text-amber-400 focus-ring rounded-sm">Videos</a></li>
+            <li><a href="/videos" class="hover:text-white focus-ring rounded-sm">Videos</a></li>
             <li aria-hidden="true">/</li>
             <li class="text-neutral-200">{video.title}</li>
           </ol>
         </nav>
-        <p class="text-amber-400 text-xs tracking-widest uppercase mb-3">{video.category}</p>
+        <p class="text-white text-xs tracking-widest uppercase mb-3">{video.category}</p>
         <h1 class="font-serif text-3xl md:text-5xl mb-4">{video.title}</h1>
         <p class="text-neutral-300 text-lg leading-relaxed max-w-3xl">{video.description}</p>
       </div>
@@ -71,14 +71,14 @@ const ogImage = `https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`;
     <section class="bg-neutral-950 pb-16">
       <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row justify-between gap-4 text-sm tracking-widest uppercase">
         {prev ? (
-          <a href={`/videos/${prev.slug}`} class="text-amber-400 hover:underline focus-ring rounded-sm">
+          <a href={`/videos/${prev.slug}`} class="text-white hover:underline focus-ring rounded-sm">
             &larr; {prev.title}
           </a>
         ) : (
           <span></span>
         )}
         {next && (
-          <a href={`/videos/${next.slug}`} class="text-amber-400 hover:underline focus-ring rounded-sm sm:text-right">
+          <a href={`/videos/${next.slug}`} class="text-white hover:underline focus-ring rounded-sm sm:text-right">
             {next.title} &rarr;
           </a>
         )}

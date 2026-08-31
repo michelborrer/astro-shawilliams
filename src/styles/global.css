@@ -10,6 +10,7 @@
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
   --color-brand: #d3b167;
   --color-brand-hover: #e0c07a;
+  --color-newsletter: #56050f;
 }
 
 html {
@@ -43,7 +44,7 @@ html {
 }
 
 .focus-ring:focus-visible {
-  outline: 2px solid var(--color-amber-400);
+  outline: 2px solid var(--color-neutral-100);
   outline-offset: 2px;
 }
 

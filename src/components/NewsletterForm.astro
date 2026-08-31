@@ -1,0 +1,139 @@
+---
+import { EMAIL, FLODESK_INLINE_FORM_ID, MAILTO_ENQUIRY } from '../lib/links';
+
+const formId = FLODESK_INLINE_FORM_ID;
+const containerId = `fd-form-${formId}`;
+
+const fieldClass =
+  'w-full sm:w-[250px] h-[53.5px] px-5 bg-transparent border border-white text-white font-serif placeholder:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70';
+---
+
+<div class="newsletter-form">
+  <form
+    class="flex flex-col sm:flex-row sm:flex-nowrap sm:justify-center gap-2.5 items-stretch"
+    data-newsletter-fallback
+  >
+    <label class="sr-only" for="newsletter-first-name">First name</label>
+    <input
+      id="newsletter-first-name"
+      type="text"
+      name="first_name"
+      placeholder="First name"
+      autocomplete="given-name"
+      maxlength="255"
+      required
+      class={fieldClass}
+    />
+    <label class="sr-only" for="newsletter-last-name">Last name</label>
+    <input
+      id="newsletter-last-name"
+      type="text"
+      name="last_name"
+      placeholder="Last name"
+      autocomplete="family-name"
+      maxlength="255"
+      required
+      class={fieldClass}
+    />
+    <label class="sr-only" for="newsletter-email">Email address</label>
+    <input
+      id="newsletter-email"
+      type="email"
+      name="email"
+      placeholder="Email address"
+      autocomplete="email"
+      maxlength="255"
+      required
+      class={fieldClass}
+    />
+    <button
+      type="submit"
+      class="h-[53.5px] px-5 bg-black text-white font-serif whitespace-nowrap rounded-[5.4px] border border-black hover:bg-neutral-900 transition-colors focus-ring"
+    >
+      Subscribe
+    </button>
+  </form>
+
+  <div id={containerId} class="newsletter-form__embed"></div>
+  <p class="mt-4 text-sm text-white/85 hidden" data-newsletter-message></p>
+
+  <noscript>
+    <p class="text-white/80 text-sm mt-4">
+      Enable JavaScript to subscribe, or email
+      <a href={MAILTO_ENQUIRY} class="underline focus-ring rounded-sm">{EMAIL}</a>.
+    </p>
+  </noscript>
+</div>
+
+<script is:inline define:vars={{ formId, containerId, EMAIL }}>
+  (function (w, d, t, h, s, n) {
+    w.FlodeskObject = n;
+    var fn = function () {
+      (w[n].q = w[n].q || []).push(arguments);
+    };
+    w[n] = w[n] || fn;
+    var f = d.getElementsByTagName(t)[0];
+    var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
+    var sm = d.createElement(t);
+    sm.async = true;
+    sm.type = 'module';
+    sm.src = h + s + '.mjs' + v;
+    f.parentNode.insertBefore(sm, f);
+    var sn = d.createElement(t);
+    sn.async = true;
+    sn.noModule = true;
+    sn.src = h + s + '.js' + v;
+    f.parentNode.insertBefore(sn, f);
+  })(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
+
+  const embed = document.getElementById(containerId);
+  const fallback = document.querySelector('[data-newsletter-fallback]');
+  const message = document.querySelector('[data-newsletter-message]');
+
+  window.fd('form', {
+    formId,
+    containerEl: '#' + containerId,
+  });
+
+  if (embed && fallback) {
+    const observer = new MutationObserver(() => {
+      if (embed.querySelector('[data-ff-el="root"]')) {
+        fallback.hidden = true;
+        fallback.setAttribute('aria-hidden', 'true');
+        observer.disconnect();
+      }
+    });
+    observer.observe(embed, { childList: true, subtree: true });
+  }
+
+  fallback?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (embed?.querySelector('[data-ff-el="form"]')) return;
+    if (message) {
+      message.classList.remove('hidden');
+      message.textContent =
+        'Newsletter signup needs a connection to our email service. Email ' + EMAIL + ' to be added.';
+    }
+  });
+</script>
+
+<style>
+  .newsletter-form :global(.ff-6469910f644615ff2d1ad8ec__title),
+  .newsletter-form :global(.ff-6469910f644615ff2d1ad8ec__subtitle) {
+    display: none !important;
+  }
+
+  .newsletter-form :global([data-ff-el='root']),
+  .newsletter-form :global(.ff-6469910f644615ff2d1ad8ec__container),
+  .newsletter-form :global(.ff-6469910f644615ff2d1ad8ec__form) {
+    background: transparent !important;
+  }
+
+  .newsletter-form :global(.ff-6469910f644615ff2d1ad8ec__form) {
+    padding: 0 !important;
+  }
+
+  .newsletter-form :global([data-ff-el='modal-close']) {
+    display: none !important;
+  }
+</style>
