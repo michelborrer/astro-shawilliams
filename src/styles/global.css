@@ -1,13 +1,15 @@
 @import "tailwindcss";
-@import "@fontsource/tenor-sans/400.css";
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/400-italic.css";
+@import "@fontsource/playfair-display/600.css";
 @import "@fontsource/source-sans-3/400.css";
 @import "@fontsource/source-sans-3/600.css";
 
 @theme {
   --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Tenor Sans", Optima, "Zapf Humanist 601", ui-sans-serif, sans-serif;
-  --color-brand: #4d070b;
-  --color-brand-hover: #6b1018;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --color-brand: #d3b167;
+  --color-brand-hover: #e0c07a;
 }
 
 html {

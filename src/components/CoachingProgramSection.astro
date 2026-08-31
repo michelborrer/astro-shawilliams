@@ -44,7 +44,7 @@ const { program, reversed = false } = Astro.props;
           href={program.ctaHref}
           target={program.ctaHref.startsWith('http') ? '_blank' : undefined}
           rel={program.ctaHref.startsWith('http') ? 'noopener noreferrer' : undefined}
-          class="inline-block bg-brand hover:bg-brand-hover text-white font-semibold px-6 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
+          class="inline-block bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-6 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
         >
           {program.ctaLabel}
         </a>
