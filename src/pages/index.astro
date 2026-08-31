@@ -60,21 +60,23 @@ const featuredVideos = featuredVideoSlugs
     <Image
       src={executiveCoach}
       alt="Sharon Williams, executive coach"
-      class="w-full h-[50vh] md:h-[80vh] img-cover-top"
+      class="w-full h-[50vh] md:h-[80vh] object-cover object-[70%_top]"
       loading="lazy"
     />
-    <div class="absolute inset-0 bg-neutral-950/60"></div>
-    <div class="absolute inset-0 flex items-center justify-center">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <blockquote class="font-serif text-3xl md:text-5xl leading-tight italic">
-          "At the top, your greatest challenge is the one you can't see."
-        </blockquote>
-        <a
-          href="/about-sharon"
-          class="inline-block mt-10 bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
-        >
-          About Sharon
-        </a>
+    <div class="absolute inset-0 bg-gradient-to-r from-neutral-950/75 via-neutral-950/45 to-transparent"></div>
+    <div class="absolute inset-0 flex items-center">
+      <div class="max-w-7xl mx-auto px-6 w-full">
+        <div class="max-w-xl md:max-w-[48%] text-left">
+          <blockquote class="font-serif text-3xl md:text-5xl leading-tight italic">
+            "At the top, your greatest challenge is the one you can't see."
+          </blockquote>
+          <a
+            href="/about-sharon"
+            class="inline-block mt-10 bg-brand hover:bg-brand-hover text-white font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
+          >
+            About Sharon
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -114,7 +116,7 @@ const featuredVideos = featuredVideoSlugs
             </div>
             <a
               href={`/coaching/${program.slug}`}
-              class="inline-block mt-8 self-start bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-6 py-2.5 text-sm tracking-widest uppercase transition-colors focus-ring"
+              class="inline-block mt-8 self-start bg-brand hover:bg-brand-hover text-white font-semibold px-6 py-2.5 text-sm tracking-widest uppercase transition-colors focus-ring"
             >
               Learn More
             </a>
@@ -192,7 +194,7 @@ const featuredVideos = featuredVideoSlugs
           href={CALENDLY_URL}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-block bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
+          class="inline-block bg-brand hover:bg-brand-hover text-white font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
         >
           Book a consultation
         </a>

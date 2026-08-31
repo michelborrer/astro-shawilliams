@@ -8,6 +8,8 @@
 @theme {
   --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --color-brand: #4d070b;
+  --color-brand-hover: #6b1018;
 }
 
 html {
