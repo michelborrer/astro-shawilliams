@@ -12,6 +12,7 @@ export type CoachingProgram = {
   title: string;
   shortTitle: string;
   subtitle: string;
+  metaTitle: string;
   metaDescription: string;
   image: ImageMetadata;
   imageAlt: string;
@@ -36,8 +37,9 @@ export const coachingPrograms: CoachingProgram[] = [
     title: 'Executive Deep Dive',
     shortTitle: 'The Executive Deep Dive',
     subtitle: 'For the leader who needs to know what no one else will tell them.',
+    metaTitle: 'Executive Deep Dive for CEOs | Sharon Williams',
     metaDescription:
-      'The Executive Deep Dive: psychometric assessment, 360-degree review and derailer identification for CEOs and C-suite leaders who need clinical-grade insight, not generic coaching.',
+      'For CEOs and C-suite leaders: psychometric assessment and a 360 that names the derailer blocking performance.',
     image: deepDivePortrait,
     imageAlt: 'Sharon Williams at her desk',
     imagePosition: 'face',
@@ -72,8 +74,9 @@ export const coachingPrograms: CoachingProgram[] = [
     title: 'The CEO Transition Program',
     shortTitle: 'The CEO Transition Program',
     subtitle: 'For the leader stepping into a role where the margin for error is zero.',
+    metaTitle: 'CEO Transition Coaching | Sharon Williams',
     metaDescription:
-      'CEO Transition Program: psychologically-informed 100-day planning, derailer assessment and real-time advisory for leaders stepping into CEO or MD roles.',
+      'For new CEOs and managing directors: a 100-day plan based on how you lead under pressure, with fortnightly advice.',
     image: flightLeadership,
     imageAlt: 'Flight leadership course',
     imagePosition: 'center',
@@ -108,8 +111,9 @@ export const coachingPrograms: CoachingProgram[] = [
     shortTitle: 'The High-Performance Team Reset',
     subtitle:
       "For the leadership team that's either your greatest asset or your biggest risk. I help you determine which, and act accordingly.",
+    metaTitle: 'Leadership Team Reset | Sharon Williams',
     metaDescription:
-      'High-Performance Team Reset: psychometric team diagnostics, dynamics mapping and facilitated recalibration for senior leadership teams stuck in silos and politics.',
+      'For senior teams stuck in silos: assess each leader, map how the team works, then reset the way they operate.',
     image: teamImage,
     imageAlt: 'Senior leadership team',
     imagePosition: 'center',

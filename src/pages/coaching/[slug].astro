@@ -13,7 +13,7 @@ export function getStaticPaths() {
 }
 
 const { program } = Astro.props;
-const title = `${program.title} — Sharon Williams Psychologist`;
+const title = program.metaTitle;
 ---
 
 <Layout
