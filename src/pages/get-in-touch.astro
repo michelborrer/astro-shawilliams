@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import heroOneStep from '../assets/images/contact-hero-one-small-step.jpg';
 import leadershipCoach from '../assets/images/contact-leadership-coach.jpg';
 import { CALENDLY_URL, EMAIL, MAILTO_ENQUIRY } from '../lib/links';
+import ContactForm from '../components/ContactForm.astro';
 
 const title = 'Get In Touch — Sharon Williams Psychologist';
 const description =
@@ -15,7 +16,7 @@ const description =
     <Image
       src={heroOneStep}
       alt="A path forward"
-      class="w-full h-[60vh] md:h-[70vh] img-cover-bottom-right"
+      class="w-full h-[calc(100vh-80px)] img-cover-bottom-right"
       loading="eager"
       fetchpriority="high"
     />
@@ -51,30 +52,25 @@ const description =
       </div>
 
       <div class="bg-neutral-900 border border-neutral-800 p-8 md:p-10 space-y-8">
-        <p class="text-neutral-300 text-lg">
-          The contact form will be available when we launch the new site. For now, book a complimentary
-          consultation or email Sharon directly.
-        </p>
+        <ContactForm />
         <div class="flex flex-col gap-4">
           <a
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-block bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors text-center focus-ring"
+            class="inline-block border border-neutral-600 hover:border-brand text-neutral-200 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors text-center focus-ring"
           >
             Book a Complimentary Consultation
-          </a>
-          <a
-            href={MAILTO_ENQUIRY}
-            class="inline-block border border-neutral-600 hover:border-amber-400 text-neutral-200 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors text-center focus-ring"
-          >
-            Email {EMAIL}
           </a>
         </div>
         <p class="text-neutral-400 text-sm">
           Or call
           <a href="tel:+610409377653" class="text-white hover:underline focus-ring rounded-sm">
             +61 409 377 653
+          </a>
+          or email
+          <a href={MAILTO_ENQUIRY} class="text-white hover:underline focus-ring rounded-sm">
+            {EMAIL}
           </a>
         </p>
         <div class="pt-6 border-t border-neutral-800">

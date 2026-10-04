@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://astro-shawilliams.pages.dev/sitemap-index.xml
+Sitemap: https://shawilliams.com/sitemap-index.xml

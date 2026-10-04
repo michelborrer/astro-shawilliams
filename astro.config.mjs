@@ -2,8 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-// Staging: astro-shawilliams.pages.dev — set SITE_URL=https://shawilliams.com at production cutover
-const site = process.env.SITE_URL ?? 'https://astro-shawilliams.pages.dev';
+const site = process.env.SITE_URL ?? 'https://shawilliams.com';
 
 export default defineConfig({
   site,

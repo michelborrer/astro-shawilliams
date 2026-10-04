@@ -1,6 +1,7 @@
-/** Staging URL until shawilliams.com cutover — update SITE_URL env at launch. */
-export const SITE_URL =
-  import.meta.env.SITE_URL ?? 'https://astro-shawilliams.pages.dev';
+export const SITE_URL = (import.meta.env.SITE ?? 'https://shawilliams.com').replace(
+  /\/$/,
+  '',
+);
 
 export const SITE_NAME = 'Sharon Williams Psychologist';
 

@@ -140,7 +140,65 @@ const resourcesActive = pathname === '/videos' || pathname.startsWith('/videos/'
     <footer class="bg-neutral-950 border-t border-neutral-800 mt-24">
       <div class="max-w-7xl mx-auto px-6 py-16 grid gap-12 md:grid-cols-3 items-start">
         <div class="flex justify-center md:justify-start">
-          <Image src={footerAccent} alt="" class="w-32 h-auto" />
+          <div class="flex flex-col items-center gap-8">
+            <ul class="flex items-center gap-2" aria-label="Social media">
+            <li>
+              <a
+                href="https://www.instagram.com/sharon_williams_psychologist/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors focus-ring"
+              >
+                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
+                  <circle cx="12" cy="12" r="4.5" />
+                  <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.facebook.com/sharonwilliamspsychologist"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors focus-ring"
+              >
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M14.5 8.25h-2.1c-.7 0-.9.32-.9.86v1.52h2.85l-.38 2.86h-2.47V21h-2.95v-7.51H7.5v-2.86h1.05V8.8c0-2.5 1.22-3.87 3.84-3.87.76 0 1.68.08 2.11.11v3.21z" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.youtube.com/channel/UCB0oD6fi8Tb3xvp9aFtmIhQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors focus-ring"
+              >
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M23.5 6.2a3 3 0 0 0-2.12-2.13C19.5 3.7 12 3.7 12 3.7s-7.5 0-9.38.37A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.13C4.5 20.3 12 20.3 12 20.3s7.5 0 9.38-.37a3 3 0 0 0 2.12-2.13A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.57V8.43L15.84 12l-6.09 3.57z" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://au.linkedin.com/in/sharon-williams-65096b8"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors focus-ring"
+              >
+                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+            <Image src={footerAccent} alt="" class="w-32 h-auto" />
+          </div>
         </div>
         <div class="space-y-3 text-center md:text-left">
           <p class="font-semibold tracking-widest uppercase text-white">Sharon Williams Psychologist</p>
@@ -158,62 +216,6 @@ const resourcesActive = pathname === '/videos' || pathname.startsWith('/videos/'
               {SITE_URL.replace('https://', '')}
             </a>
           </p>
-          <ul class="flex items-center gap-3 justify-center md:justify-start pt-3" aria-label="Social media">
-            <li>
-              <a
-                href="http://instagram.com/sha_williams_exec_coach"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors focus-ring"
-              >
-                <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
-                  <circle cx="12" cy="12" r="4.5" />
-                  <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a
-                href="http://facebook.com/shashawilliams"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors focus-ring"
-              >
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M14.5 8.25h-2.1c-.7 0-.9.32-.9.86v1.52h2.85l-.38 2.86h-2.47V21h-2.95v-7.51H7.5v-2.86h1.05V8.8c0-2.5 1.22-3.87 3.84-3.87.76 0 1.68.08 2.11.11v3.21z" />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.youtube.com/channel/UCB0oD6fi8Tb3xvp9aFtmIhQ"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors focus-ring"
-              >
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M23.5 6.2a3 3 0 0 0-2.12-2.13C19.5 3.7 12 3.7 12 3.7s-7.5 0-9.38.37A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.13C4.5 20.3 12 20.3 12 20.3s7.5 0 9.38-.37a3 3 0 0 0 2.12-2.13A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.57V8.43L15.84 12l-6.09 3.57z" />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://au.linkedin.com/in/sharon-williams-65096b8"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors focus-ring"
-              >
-                <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z" />
-                </svg>
-              </a>
-            </li>
-          </ul>
         </div>
         <div class="flex md:justify-end">
           <a

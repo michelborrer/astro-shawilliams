@@ -1,0 +1,158 @@
+---
+import { EMAIL } from '../lib/links';
+
+const fieldClass =
+  'w-full px-4 py-3 bg-neutral-950 border border-neutral-700 text-white placeholder:text-neutral-500 focus:border-brand focus:outline-none focus-ring';
+const labelClass = 'block text-xs tracking-widest uppercase text-neutral-400 mb-2';
+---
+
+<form class="space-y-5" data-contact-form novalidate>
+  <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+  <input type="hidden" name="_subject" value="Website enquiry from shawilliams.com" />
+  <input type="hidden" name="_template" value="table" />
+  <input type="hidden" name="_captcha" value="false" />
+
+  <div>
+    <label class={labelClass} for="contact-name">Name</label>
+    <input
+      id="contact-name"
+      name="name"
+      type="text"
+      autocomplete="name"
+      maxlength="120"
+      required
+      class={fieldClass}
+    />
+  </div>
+
+  <div>
+    <label class={labelClass} for="contact-email">Email</label>
+    <input
+      id="contact-email"
+      name="email"
+      type="email"
+      autocomplete="email"
+      maxlength="255"
+      required
+      class={fieldClass}
+    />
+  </div>
+
+  <div>
+    <label class={labelClass} for="contact-phone">Phone <span class="normal-case tracking-normal">(optional)</span></label>
+    <input
+      id="contact-phone"
+      name="phone"
+      type="tel"
+      autocomplete="tel"
+      maxlength="40"
+      class={fieldClass}
+    />
+  </div>
+
+  <div>
+    <label class={labelClass} for="contact-organisation">Organisation <span class="normal-case tracking-normal">(optional)</span></label>
+    <input
+      id="contact-organisation"
+      name="organisation"
+      type="text"
+      autocomplete="organization"
+      maxlength="120"
+      class={fieldClass}
+    />
+  </div>
+
+  <div>
+    <label class={labelClass} for="contact-interest">I'm interested in</label>
+    <select id="contact-interest" name="interest" class={fieldClass} required>
+      <option value="General enquiry">General enquiry</option>
+      <option value="Executive Deep Dive">Executive Deep Dive</option>
+      <option value="CEO Transition">CEO Transition</option>
+      <option value="Team Reset">Team Reset</option>
+      <option value="Keynote">Keynote</option>
+    </select>
+  </div>
+
+  <div>
+    <label class={labelClass} for="contact-message">Message</label>
+    <textarea
+      id="contact-message"
+      name="message"
+      rows="5"
+      maxlength="4000"
+      required
+      class={`${fieldClass} resize-y min-h-[8rem]`}
+    ></textarea>
+  </div>
+
+  <p class="text-sm text-red-400 hidden" data-contact-error role="alert"></p>
+
+  <button
+    type="submit"
+    data-contact-submit
+    class="w-full bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors focus-ring disabled:opacity-60"
+  >
+    Send enquiry
+  </button>
+</form>
+
+<div class="hidden space-y-3" data-contact-success role="status">
+  <p class="text-white text-lg">Thank you. Your enquiry has been sent.</p>
+  <p class="text-neutral-300">Sharon will be in touch shortly.</p>
+</div>
+
+<script is:inline define:vars={{ EMAIL }}>
+  const form = document.querySelector('[data-contact-form]');
+  const success = document.querySelector('[data-contact-success]');
+  const errorEl = document.querySelector('[data-contact-error]');
+  const submitBtn = document.querySelector('[data-contact-submit]');
+  const endpoint = 'https://formsubmit.co/ajax/' + EMAIL;
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!(form instanceof HTMLFormElement)) return;
+
+    errorEl?.classList.add('hidden');
+    if (errorEl) errorEl.textContent = '';
+
+    const honey = form.querySelector('input[name="_honey"]');
+    if (honey instanceof HTMLInputElement && honey.value) return;
+
+    if (!form.reportValidity()) return;
+
+    const data = new FormData(form);
+    const payload = Object.fromEntries(data.entries());
+    payload._subject = 'Website enquiry — ' + (payload.interest || 'General enquiry');
+
+    if (submitBtn instanceof HTMLButtonElement) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+    }
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) throw new Error('Request failed');
+
+      form.classList.add('hidden');
+      success?.classList.remove('hidden');
+    } catch {
+      if (errorEl) {
+        errorEl.textContent =
+          'Something went wrong. Please email ' + EMAIL + ' or try again.';
+        errorEl.classList.remove('hidden');
+      }
+      if (submitBtn instanceof HTMLButtonElement) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send enquiry';
+      }
+    }
+  });
+</script>

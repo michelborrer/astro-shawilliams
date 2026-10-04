@@ -4,7 +4,6 @@ import { Image } from 'astro:assets';
 import { CALENDLY_URL } from '../lib/links';
 import heroPortrait from '../assets/images/about-hero-portrait.jpg';
 import fremantle from '../assets/images/about-fremantle.jpg';
-import clientLogos from '../assets/images/about-client-logos.png';
 import cessna from '../assets/images/about-cessna.jpg';
 
 const title = 'About Sharon — Sharon Williams Psychologist';
@@ -17,7 +16,7 @@ const description =
     <Image
       src={heroPortrait}
       alt="Sharon Williams"
-      class="w-full h-[60vh] md:h-[70vh] img-cover-top"
+      class="w-full h-[calc(100vh-80px)] img-cover-top"
       loading="eager"
     />
     <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/20 to-neutral-950/80"></div>
@@ -109,12 +108,6 @@ const description =
           coaches won't.
         </p>
       </div>
-    </div>
-  </section>
-
-  <section class="bg-neutral-950 py-12">
-    <div class="max-w-6xl mx-auto px-6">
-      <Image src={clientLogos} alt="Selected clients and qualifications" class="w-full h-auto" />
     </div>
   </section>
 
