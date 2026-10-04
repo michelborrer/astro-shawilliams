@@ -18,6 +18,13 @@ export type CoachingProgram = {
   imagePosition: ImagePosition;
   who: string[];
   included: string[];
+  hub: {
+    eyebrow: string;
+    summary: string;
+    suitedTo: string;
+    focus: string;
+    runs: string;
+  };
   ctaLabel: string;
   ctaHref: string;
 };
@@ -48,6 +55,14 @@ export const coachingPrograms: CoachingProgram[] = [
       '1:1 advisory sessions (typically 6–12 months)',
       'Reassessment to confirm behavioural shift',
     ],
+    hub: {
+      eyebrow: 'One leader',
+      summary:
+        'Choose this when the question is about one person. It looks for the pattern others are working around, then stays with that leader until the change can be checked.',
+      suitedTo: 'A CEO, C-suite executive, or senior director',
+      focus: 'A personal derailer',
+      runs: 'An individual assessment, a written debrief, then 1:1 advisory',
+    },
     ctaLabel: 'Book a Complimentary Consultation',
     ctaHref: CALENDLY_URL,
   },
@@ -75,6 +90,14 @@ export const coachingPrograms: CoachingProgram[] = [
       'Real-time counsel on critical early decisions',
       'Post-transition review and forward strategy',
     ],
+    hub: {
+      eyebrow: 'A new role',
+      summary:
+        'Choose this when the question is the new seat. The work is the opening months: where this leader is likely to trip, who around them matters, and which decisions should not wait.',
+      suitedTo: 'A new or incoming CEO, managing director, or senior executive',
+      focus: 'The opening months in the role',
+      runs: 'A transition plan with fortnightly advisory',
+    },
     ctaLabel: 'Book a Complimentary Consultation',
     ctaHref: CALENDLY_URL,
   },
@@ -89,7 +112,7 @@ export const coachingPrograms: CoachingProgram[] = [
       'High-Performance Team Reset: psychometric team diagnostics, dynamics mapping and facilitated recalibration for senior leadership teams stuck in silos and politics.',
     image: teamImage,
     imageAlt: 'Senior leadership team',
-    imagePosition: 'top',
+    imagePosition: 'center',
     who: [
       'You lead, or sit on, a senior leadership team that looks capable on paper but operates in silos, avoids accountability, and defaults to politics over strategy.',
       "Offsites produce energy that evaporates by Monday. Consultants have come and gone. The dysfunction persists — because no one has diagnosed what's actually driving it. You don't need another team-building exercise.",
@@ -103,6 +126,14 @@ export const coachingPrograms: CoachingProgram[] = [
       'Facilitated team recalibration sessions',
       'Advisory to embed new operating rhythms (typically 6–12 months)',
     ],
+    hub: {
+      eyebrow: 'The team',
+      summary:
+        'Choose this when the question is the group, not one person. It diagnoses how the team actually works, then rebuilds the rhythm they use after the offsite is over.',
+      suitedTo: 'A senior leadership team',
+      focus: 'How the team operates together',
+      runs: 'Individual diagnostics, then facilitated work with the whole team',
+    },
     ctaLabel: 'Book a Complimentary Consultation',
     ctaHref: CALENDLY_URL,
   },
