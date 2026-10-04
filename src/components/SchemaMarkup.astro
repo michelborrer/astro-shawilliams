@@ -1,5 +1,5 @@
 ---
-import { EMAIL, PHONE, SITE_NAME, SITE_URL } from '../lib/site';
+import { absoluteUrl, EMAIL, PHONE, SITE_NAME } from '../lib/site';
 import { CALENDLY_URL } from '../lib/links';
 
 interface Props {
@@ -27,7 +27,7 @@ const personSchema = {
   jobTitle: 'Registered Psychologist & Executive Coach',
   description:
     'Psychologist and trusted advisor to CEOs and C-suite executives across Australia, specialising in psychometric assessment and leadership derailer identification.',
-  url: SITE_URL,
+  url: absoluteUrl('/'),
   email: EMAIL,
   telephone: PHONE,
   sameAs: [
@@ -49,7 +49,7 @@ const businessSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   name: SITE_NAME,
-  url: SITE_URL,
+  url: absoluteUrl('/'),
   description:
     'Executive coaching and psychological assessment for CEOs and C-suite leaders in Australia.',
   email: EMAIL,
@@ -77,7 +77,7 @@ if (type === 'video' && video) {
     embedUrl: `https://www.youtube.com/embed/${video.youtubeId}`,
     contentUrl: `https://www.youtube.com/watch?v=${video.youtubeId}`,
     uploadDate: video.published,
-    url: new URL(`/videos/${video.slug}`, SITE_URL).href,
+    url: absoluteUrl(`/videos/${video.slug}`),
     publisher: { '@type': 'Person', name: 'Sharon Williams' },
   });
 }
@@ -89,7 +89,7 @@ if (type === 'service' && service) {
     name: service.name,
     description: service.description,
     provider: { '@type': 'Person', name: 'Sharon Williams' },
-    url: new URL(`/coaching/${service.slug}`, SITE_URL).href,
+    url: absoluteUrl(`/coaching/${service.slug}`),
     areaServed: 'AU',
     audience: { '@type': 'Audience', audienceType: 'CEOs and C-suite executives' },
   });
