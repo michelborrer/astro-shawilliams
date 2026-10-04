@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
+import SiteImage from '../components/SiteImage.astro';
 import heroChess from '../assets/images/coaching-hero-chess.jpg';
 import standOut from '../assets/images/coaching-stand-out.jpg';
 import CoachingProgramSection from '../components/CoachingProgramSection.astro';
@@ -13,7 +13,7 @@ const description =
 
 <Layout title={title} description={description} path="/coaching" schemaType="person">
   <section class="relative">
-    <Image
+    <SiteImage
       src={heroChess}
       alt="Chess pieces"
       class="w-full h-[calc(100vh-80px)] object-cover object-center"
@@ -54,7 +54,7 @@ const description =
   ))}
 
   <section class="relative">
-    <Image src={standOut} alt="Stand out from the crowd" class="w-full h-[40vh] md:h-[55vh] object-cover" loading="lazy" />
+    <SiteImage src={standOut} alt="Stand out from the crowd" class="w-full h-[40vh] md:h-[55vh] object-cover" />
     <div class="absolute inset-0 bg-neutral-950/40"></div>
   </section>
 

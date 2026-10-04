@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
+import SiteImage from '../components/SiteImage.astro';
 import heroOneStep from '../assets/images/contact-hero-one-small-step.jpg';
 import leadershipCoach from '../assets/images/contact-leadership-coach.jpg';
 import { CALENDLY_URL, EMAIL, MAILTO_ENQUIRY } from '../lib/links';
@@ -13,7 +13,7 @@ const description =
 
 <Layout title={title} description={description} path="/get-in-touch">
   <section class="relative">
-    <Image
+    <SiteImage
       src={heroOneStep}
       alt="A path forward"
       class="w-full h-[calc(100vh-80px)] img-cover-bottom-right"
@@ -35,11 +35,11 @@ const description =
       <div class="space-y-8">
         <h2 class="font-serif text-3xl md:text-4xl tracking-wide uppercase">Get in touch!</h2>
         <div class="mx-auto lg:mx-0 w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border border-neutral-800">
-          <Image
+          <SiteImage
             src={leadershipCoach}
             alt="Sharon Williams — Leadership Coach to CEOs and Executives"
+            preset="avatar"
             class="w-full h-full img-cover-circle-portrait"
-            loading="lazy"
           />
         </div>
         <div class="space-y-4 text-neutral-300 text-lg leading-relaxed max-w-md">

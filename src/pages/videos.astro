@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
+import SiteImage from '../components/SiteImage.astro';
 import heroFlight from '../assets/images/videos-hero-leadership-flight.jpg';
 import { videos, videoCategories } from '../data/videos';
 
@@ -11,7 +11,7 @@ const description =
 
 <Layout title={title} description={description} path="/videos">
   <section class="relative">
-    <Image
+    <SiteImage
       src={heroFlight}
       alt="Leadership in Flight Programme"
       class="w-full h-[calc(100vh-80px)] object-cover object-center"

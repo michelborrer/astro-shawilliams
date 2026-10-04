@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { Image } from 'astro:assets';
+import SiteImage from './SiteImage.astro';
 import type { CoachingProgram } from '../../data/coaching';
 import { imagePositionClass } from '../lib/imagePosition';
 
@@ -15,11 +15,11 @@ const { program, reversed = false } = Astro.props;
 <section id={program.anchorId} class="py-20 scroll-mt-24">
   <div class="max-w-6xl mx-auto px-6 grid gap-10 md:gap-16 md:grid-cols-2 items-center">
     <div class={reversed ? 'md:order-2' : ''}>
-      <Image
+      <SiteImage
         src={program.image}
         alt={program.imageAlt}
+        preset="panel"
         class:list={['w-full aspect-[4/5]', imagePositionClass(program.imagePosition)]}
-        loading="lazy"
       />
     </div>
     <div class="space-y-6">

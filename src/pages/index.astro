@@ -1,7 +1,7 @@
 ---
 import type { ImageMetadata } from 'astro';
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
+import SiteImage from '../components/SiteImage.astro';
 import heroGlassCeiling from '../assets/images/hero-glass-ceiling.jpg';
 import executiveCoach from '../assets/images/executive-coach.jpg';
 import sydneyHarbourBridge from '../assets/images/sydney-harbour-bridge.jpg';
@@ -32,7 +32,7 @@ const featuredVideos = featuredVideoSlugs
 
 <Layout schemaType="person">
   <section class="relative">
-    <Image
+    <SiteImage
       src={heroGlassCeiling}
       alt="Glass ceiling viewed from below"
       class="w-full h-[calc(100vh-80px)] object-cover"
@@ -57,11 +57,10 @@ const featuredVideos = featuredVideoSlugs
   </section>
 
   <section class="relative">
-    <Image
+    <SiteImage
       src={executiveCoach}
       alt="Sharon Williams, executive coach"
       class="w-full h-[50vh] md:h-[80vh] object-cover object-[70%_top]"
-      loading="lazy"
     />
     <div class="absolute inset-0 bg-gradient-to-r from-neutral-950/75 via-neutral-950/45 to-transparent"></div>
     <div class="absolute inset-0 flex items-center">
@@ -96,11 +95,10 @@ const featuredVideos = featuredVideoSlugs
   </section>
 
   <section class="relative" aria-hidden="true">
-    <Image
+    <SiteImage
       src={sydneyHarbourBridge}
       alt=""
       class="w-full h-[30vh] md:h-[50vh] object-cover"
-      loading="lazy"
     />
     <div class="absolute inset-0 bg-neutral-950/40"></div>
   </section>
@@ -140,11 +138,11 @@ const featuredVideos = featuredVideoSlugs
               >
                 <div class="aspect-video overflow-hidden motion-safe-hover-scale">
                   {localImage ? (
-                    <Image
+                    <SiteImage
                       src={localImage}
                       alt=""
+                      preset="card"
                       class="w-full h-full object-cover transition-transform duration-500"
-                      loading="lazy"
                     />
                   ) : (
                     <img
