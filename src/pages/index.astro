@@ -28,6 +28,12 @@ const featuredImages: Record<string, ImageMetadata> = {
 const featuredVideos = featuredVideoSlugs
   .map((slug) => videos.find((v) => v.slug === slug))
   .filter((v): v is (typeof videos)[number] => Boolean(v));
+
+/**
+ * The positioning line stays on the hero either way.
+ * Set this to false to restore the original hero, where that line is the H1.
+ */
+const serviceLedHero = true;
 ---
 
 <Layout schemaType="person">
@@ -42,13 +48,29 @@ const featuredVideos = featuredVideoSlugs
     <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/45 to-neutral-950/70"></div>
     <div class="absolute inset-0 flex items-center">
       <div class="max-w-7xl mx-auto px-6 w-full">
-        <p class="sr-only">Executive psychologist and coach for CEOs and C-suite leaders in Australia</p>
-        <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl tracking-tight max-w-4xl">
-          What made you successful is now holding you back
-        </h1>
-        <p class="mt-6 text-lg md:text-2xl text-neutral-200 tracking-wide">
-          Psychologist and trusted advisor to c-suite leaders
-        </p>
+        {serviceLedHero ? (
+          <>
+            <h1 class="text-xs md:text-sm tracking-wide md:tracking-widest uppercase text-white mb-4 md:mb-5 max-w-3xl leading-relaxed">
+              Executive psychologist and trusted advisor to CEOs
+            </h1>
+            <p class="font-serif text-4xl md:text-6xl lg:text-7xl tracking-tight max-w-4xl">
+              What made you successful is now holding you back
+            </p>
+            <p class="mt-6 text-lg md:text-2xl text-neutral-200 tracking-wide max-w-3xl">
+              For CEOs and C-suite leaders in Australia
+            </p>
+          </>
+        ) : (
+          <>
+            <p class="sr-only">Executive psychologist and coach for CEOs and C-suite leaders in Australia</p>
+            <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl tracking-tight max-w-4xl">
+              What made you successful is now holding you back
+            </h1>
+            <p class="mt-6 text-lg md:text-2xl text-neutral-200 tracking-wide">
+              Psychologist and trusted advisor to c-suite leaders
+            </p>
+          </>
+        )}
         <p class="mt-2 text-lg md:text-2xl text-neutral-200 tracking-wide max-w-3xl">
           I uncover the hidden derailers that traditional coaching misses
         </p>
