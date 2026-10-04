@@ -59,7 +59,7 @@ export const videos: Video[] = [
     category: 'Leadership Strategy & Performance',
     youtubeId: 'xe60kd6sl0I',
     description:
-      'The hidden derailers that drive success until they do not — how perfectionism, over-functioning and other dark-side traits sabotage senior leaders.',
+      'Why the behaviours that show up under stress can sabotage leadership — and how naming the derailer, and the payoff that keeps it, is the first step to changing it.',
     published: '2022-08-10',
   },
   {
@@ -77,7 +77,7 @@ export const videos: Video[] = [
     category: 'Leadership Lessons from the Cockpit',
     youtubeId: 'm7XTS7C4zXk',
     description:
-      'How conviction shapes leadership — and when belief becomes a blind spot that prevents you from seeing what your team already knows.',
+      'How self-belief changed Sharon’s flying — and why thinking you can, or thinking you can’t, shows up in the quality of the performance that follows.',
     published: '2022-07-01',
   },
   {

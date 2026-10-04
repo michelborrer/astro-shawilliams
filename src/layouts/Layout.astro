@@ -21,6 +21,10 @@ interface Props {
     youtubeId: string;
     slug: string;
     published?: string;
+    updated?: string;
+    duration?: string;
+    transcript?: string;
+    chapters?: { name: string; startOffset: number }[];
   };
   schemaService?: {
     name: string;

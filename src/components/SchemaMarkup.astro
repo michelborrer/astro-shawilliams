@@ -10,6 +10,10 @@ interface Props {
     youtubeId: string;
     slug: string;
     published?: string;
+    updated?: string;
+    duration?: string;
+    transcript?: string;
+    chapters?: { name: string; startOffset: number }[];
   };
   service?: {
     name: string;
@@ -77,8 +81,17 @@ if (type === 'video' && video) {
     embedUrl: `https://www.youtube.com/embed/${video.youtubeId}`,
     contentUrl: `https://www.youtube.com/watch?v=${video.youtubeId}`,
     uploadDate: video.published,
+    dateModified: video.updated,
+    duration: video.duration,
+    transcript: video.transcript,
     url: absoluteUrl(`/videos/${video.slug}`),
     publisher: { '@type': 'Person', name: 'Sharon Williams' },
+    hasPart: video.chapters?.map((chapter) => ({
+      '@type': 'Clip',
+      name: chapter.name,
+      startOffset: chapter.startOffset,
+      url: `https://www.youtube.com/watch?v=${video.youtubeId}&t=${chapter.startOffset}`,
+    })),
   });
 }
 
