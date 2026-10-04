@@ -1,0 +1,21 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages production deploy
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.CF_PAGES_PRODUCTION_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$DEPLOY_HOOK_URL" ]; then
+            echo "Missing CF_PAGES_PRODUCTION_DEPLOY_HOOK secret"
+            exit 1
+          fi
+          curl -fsS -X POST "$DEPLOY_HOOK_URL"
+          echo "Production deploy hook triggered"
