@@ -67,9 +67,9 @@ const resourcesActive = pathname === '/videos' || pathname.startsWith('/videos/'
     </a>
 
     <header class="sticky top-0 z-50 bg-neutral-950/90 backdrop-blur border-b border-neutral-800">
-      <nav class="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-6" aria-label="Main">
-        <a href="/" class="flex items-center min-w-0 focus-ring rounded-sm">
-          <Image src={logo} alt="Sharon Williams" class="h-9 w-auto min-[380px]:h-10 sm:h-12" loading="eager" />
+      <nav class="max-w-7xl mx-auto px-1.5 min-[360px]:px-3 sm:px-6 py-4 flex items-center justify-between gap-1 min-[360px]:gap-2 sm:gap-6" aria-label="Main">
+        <a href="/" class="flex items-center shrink-0 focus-ring rounded-sm">
+          <Image src={logo} alt="Sharon Williams" class="h-12 w-auto" loading="eager" />
         </a>
         <ul class="hidden lg:flex items-center gap-8 text-sm tracking-widest uppercase">
           <li><NavLink href="/about-sharon">About Sharon</NavLink></li>
@@ -100,7 +100,7 @@ const resourcesActive = pathname === '/videos' || pathname.startsWith('/videos/'
           </li>
           <li><NavLink href="/get-in-touch">Get In Touch</NavLink></li>
         </ul>
-        <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+        <div class="flex items-center gap-1 min-[360px]:gap-1.5 sm:gap-3 shrink-0">
           <a
             href={CALENDLY_URL}
             target="_blank"
