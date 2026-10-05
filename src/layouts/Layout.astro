@@ -67,9 +67,9 @@ const resourcesActive = pathname === '/videos' || pathname.startsWith('/videos/'
     </a>
 
     <header class="sticky top-0 z-50 bg-neutral-950/90 backdrop-blur border-b border-neutral-800">
-      <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6" aria-label="Main">
-        <a href="/" class="flex items-center shrink-0 focus-ring rounded-sm">
-          <Image src={logo} alt="Sharon Williams" class="h-12 w-auto" loading="eager" />
+      <nav class="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-6" aria-label="Main">
+        <a href="/" class="flex items-center min-w-0 focus-ring rounded-sm">
+          <Image src={logo} alt="Sharon Williams" class="h-9 w-auto min-[380px]:h-10 sm:h-12" loading="eager" />
         </a>
         <ul class="hidden lg:flex items-center gap-8 text-sm tracking-widest uppercase">
           <li><NavLink href="/about-sharon">About Sharon</NavLink></li>
@@ -100,18 +100,18 @@ const resourcesActive = pathname === '/videos' || pathname.startsWith('/videos/'
           </li>
           <li><NavLink href="/get-in-touch">Get In Touch</NavLink></li>
         </ul>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
           <a
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-4 py-2.5 text-xs sm:text-sm tracking-wide transition-colors whitespace-nowrap focus-ring"
+            class="bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-2.5 py-2 text-xs min-[380px]:px-4 min-[380px]:py-2.5 sm:text-sm tracking-wide transition-colors whitespace-nowrap focus-ring"
           >
             Work with me
           </a>
-          <details class="lg:hidden group/menu" id="mobile-menu">
+          <details class="lg:hidden group/menu shrink-0" id="mobile-menu">
             <summary
-              class="cursor-pointer list-none marker:hidden [&::-webkit-details-marker]:hidden p-2 -mr-2 text-white hover:text-neutral-300 transition-colors focus-ring rounded-sm"
+              class="cursor-pointer list-none marker:hidden [&::-webkit-details-marker]:hidden p-2 text-white hover:text-neutral-300 transition-colors focus-ring rounded-sm"
               aria-label="Toggle menu"
             >
               <svg class="w-6 h-6 group-open/menu:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
