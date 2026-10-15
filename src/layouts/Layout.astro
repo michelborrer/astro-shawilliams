@@ -44,9 +44,6 @@ const {
   schemaService,
   noindex = false,
 } = Astro.props;
-
-const pathname = Astro.url.pathname;
-const resourcesActive = pathname === '/videos' || pathname.startsWith('/videos/');
 ---
 
 <!doctype html>
@@ -58,7 +55,7 @@ const resourcesActive = pathname === '/videos' || pathname.startsWith('/videos/'
     <SEO title={title} description={description} path={path} image={ogImage} noindex={noindex} />
     <SchemaMarkup type={schemaType} video={schemaVideo} service={schemaService} />
   </head>
-  <body class="bg-neutral-950 text-neutral-100 font-sans antialiased">
+  <body class="bg-neutral-950 text-neutral-100 font-sans antialiased selection:bg-brand selection:text-neutral-950">
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-brand focus:text-neutral-950 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold"
@@ -66,52 +63,29 @@ const resourcesActive = pathname === '/videos' || pathname.startsWith('/videos/'
       Skip to content
     </a>
 
-    <header class="sticky top-0 z-50 bg-neutral-950/90 backdrop-blur border-b border-neutral-800">
-      <nav class="max-w-7xl mx-auto px-1.5 min-[360px]:px-3 sm:px-6 py-4 flex items-center justify-between gap-1 min-[360px]:gap-2 sm:gap-6" aria-label="Main">
+    <header class="sticky top-0 z-50 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800/80">
+      <nav class="max-w-7xl mx-auto px-2 min-[360px]:px-3 sm:px-6 py-4 flex items-center justify-between gap-2 sm:gap-6" aria-label="Main">
         <a href="/" class="flex items-center shrink-0 focus-ring rounded-sm">
           <Image src={logo} alt="Sharon Williams" class="h-12 w-auto" loading="eager" />
         </a>
-        <ul class="hidden lg:flex items-center gap-8 text-sm tracking-widest uppercase">
-          <li><NavLink href="/about-sharon">About Sharon</NavLink></li>
-          <li><NavLink href="/coaching" match="prefix">Coaching</NavLink></li>
-          <li>
-            <details class="relative group/resources">
-              <summary
-                class:list={[
-                  'cursor-pointer list-none marker:hidden [&::-webkit-details-marker]:hidden uppercase tracking-widest inline-flex items-center gap-1 focus-ring rounded-sm',
-                  'text-white hover:text-neutral-300 transition-colors',
-                ]}
-              >
-                Resources
-                <svg class="w-3 h-3 transition-transform group-open/resources:rotate-180" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path d="M2 4l4 4 4-4" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </summary>
-              <div class="absolute left-0 top-full pt-2">
-                <ul class="bg-neutral-900 border border-neutral-800 py-2 min-w-[160px]">
-                  <li>
-                    <NavLink href="/videos" class="block px-4 py-2 hover:bg-neutral-800" match="prefix">
-                      Videos
-                    </NavLink>
-                  </li>
-                </ul>
-              </div>
-            </details>
-          </li>
-          <li><NavLink href="/get-in-touch">Get In Touch</NavLink></li>
+        <ul class="hidden lg:flex items-center gap-9 text-xs font-semibold tracking-[0.2em] uppercase">
+          <li><NavLink href="/about-sharon/">About Sharon</NavLink></li>
+          <li><NavLink href="/coaching/" match="prefix">Coaching</NavLink></li>
+          <li><NavLink href="/videos/" match="prefix">Videos</NavLink></li>
+          <li><NavLink href="/get-in-touch/">Get In Touch</NavLink></li>
         </ul>
-        <div class="flex items-center gap-1 min-[360px]:gap-1.5 sm:gap-3 shrink-0">
+        <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
           <a
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-2.5 py-2 text-xs min-[380px]:px-4 min-[380px]:py-2.5 sm:text-sm tracking-wide transition-colors whitespace-nowrap focus-ring"
+            class="bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-3 py-2 text-xs min-[380px]:px-5 min-[380px]:py-2.5 sm:text-xs tracking-[0.16em] uppercase transition-colors whitespace-nowrap focus-ring"
           >
             Work with me
           </a>
           <details class="lg:hidden group/menu shrink-0" id="mobile-menu">
             <summary
-              class="cursor-pointer list-none marker:hidden [&::-webkit-details-marker]:hidden p-2 text-white hover:text-neutral-300 transition-colors focus-ring rounded-sm"
+              class="cursor-pointer list-none marker:hidden [&::-webkit-details-marker]:hidden p-2 text-white hover:text-brand transition-colors focus-ring rounded-sm"
               aria-label="Toggle menu"
             >
               <svg class="w-6 h-6 group-open/menu:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -124,12 +98,12 @@ const resourcesActive = pathname === '/videos' || pathname.startsWith('/videos/'
                 <line x1="6" y1="18" x2="18" y2="6" stroke-linecap="round" />
               </svg>
             </summary>
-            <div class="absolute left-0 right-0 top-full bg-neutral-950 border-b border-neutral-800">
-              <ul class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1 text-sm tracking-widest uppercase mobile-nav-links">
-                <li><NavLink href="/about-sharon" class="block py-3">About Sharon</NavLink></li>
-                <li><NavLink href="/coaching" class="block py-3" match="prefix">Coaching</NavLink></li>
-                <li><NavLink href="/videos" class="block py-3" match="prefix">Videos</NavLink></li>
-                <li><NavLink href="/get-in-touch" class="block py-3">Get In Touch</NavLink></li>
+            <div class="absolute left-0 right-0 top-full bg-neutral-950/98 backdrop-blur-md border-b border-neutral-800 shadow-2xl">
+              <ul class="max-w-7xl mx-auto px-6 py-5 flex flex-col divide-y divide-neutral-900 text-xs font-semibold tracking-[0.2em] uppercase mobile-nav-links">
+                <li><NavLink href="/about-sharon/" class="block py-3.5 after:hidden">About Sharon</NavLink></li>
+                <li><NavLink href="/coaching/" class="block py-3.5 after:hidden" match="prefix">Coaching</NavLink></li>
+                <li><NavLink href="/videos/" class="block py-3.5 after:hidden" match="prefix">Videos</NavLink></li>
+                <li><NavLink href="/get-in-touch/" class="block py-3.5 after:hidden">Get In Touch</NavLink></li>
               </ul>
             </div>
           </details>
@@ -141,103 +115,133 @@ const resourcesActive = pathname === '/videos' || pathname.startsWith('/videos/'
       <slot />
     </main>
 
-    <footer class="bg-neutral-950 border-t border-neutral-800 mt-24">
-      <div class="max-w-7xl mx-auto px-6 py-16 grid gap-12 md:grid-cols-3 items-start">
-        <div class="flex justify-center md:justify-start">
-          <div class="flex flex-col items-center gap-8">
-            <ul class="flex items-center gap-2" aria-label="Social media">
-            <li>
-              <a
-                href="https://www.instagram.com/sharon_williams_psychologist/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors focus-ring"
-              >
-                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
-                  <circle cx="12" cy="12" r="4.5" />
-                  <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.facebook.com/sharonwilliamspsychologist"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors focus-ring"
-              >
-                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M14.5 8.25h-2.1c-.7 0-.9.32-.9.86v1.52h2.85l-.38 2.86h-2.47V21h-2.95v-7.51H7.5v-2.86h1.05V8.8c0-2.5 1.22-3.87 3.84-3.87.76 0 1.68.08 2.11.11v3.21z" />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.youtube.com/channel/UCB0oD6fi8Tb3xvp9aFtmIhQ"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors focus-ring"
-              >
-                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M23.5 6.2a3 3 0 0 0-2.12-2.13C19.5 3.7 12 3.7 12 3.7s-7.5 0-9.38.37A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.13C4.5 20.3 12 20.3 12 20.3s7.5 0 9.38-.37a3 3 0 0 0 2.12-2.13A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.57V8.43L15.84 12l-6.09 3.57z" />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://au.linkedin.com/in/sharon-williams-65096b8"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors focus-ring"
-              >
-                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z" />
-                </svg>
-              </a>
-            </li>
-          </ul>
-            <Image src={footerAccent} alt="" class="w-32 h-auto" />
+    <footer class="bg-neutral-950 border-t border-neutral-800/80">
+      <div class="max-w-7xl mx-auto px-6 py-16 md:py-20 grid gap-12 md:grid-cols-12 items-start">
+        <div class="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left gap-6">
+          <div>
+            <p class="font-serif text-2xl text-white">Sharon Williams</p>
+            <p class="text-xs tracking-[0.2em] uppercase text-brand mt-1">
+              Registered Psychologist &amp; Executive Advisor
+            </p>
+          </div>
+          <p class="text-sm text-neutral-400 leading-relaxed max-w-xs">
+            Clinical-grade psychological diagnostics and advisory for CEOs and C-suite leaders across Australia.
+          </p>
+          <div class="flex items-center gap-4 pt-1">
+            <Image src={footerAccent} alt="" class="w-24 h-auto opacity-90" />
+            <ul class="flex items-center gap-2.5" aria-label="Social media">
+              <li>
+                <a
+                  href="https://au.linkedin.com/in/sharon-williams-65096b8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-300 hover:border-brand hover:text-brand transition-colors focus-ring"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/channel/UCB0oD6fi8Tb3xvp9aFtmIhQ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="YouTube"
+                  class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-300 hover:border-brand hover:text-brand transition-colors focus-ring"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M23.5 6.2a3 3 0 0 0-2.12-2.13C19.5 3.7 12 3.7 12 3.7s-7.5 0-9.38.37A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.13C4.5 20.3 12 20.3 12 20.3s7.5 0 9.38-.37a3 3 0 0 0 2.12-2.13A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.57V8.43L15.84 12l-6.09 3.57z" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/sharon_williams_psychologist/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-300 hover:border-brand hover:text-brand transition-colors focus-ring"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
+                    <circle cx="12" cy="12" r="4.5" />
+                    <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/sharonwilliamspsychologist"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-300 hover:border-brand hover:text-brand transition-colors focus-ring"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M14.5 8.25h-2.1c-.7 0-.9.32-.9.86v1.52h2.85l-.38 2.86h-2.47V21h-2.95v-7.51H7.5v-2.86h1.05V8.8c0-2.5 1.22-3.87 3.84-3.87.76 0 1.68.08 2.11.11v3.21z" />
+                  </svg>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="space-y-3 text-center md:text-left">
-          <p class="font-semibold tracking-widest uppercase text-white">Sharon Williams Psychologist</p>
-          <p>
-            Phone | <a href="tel:+610409377653" class="hover:text-white focus-ring rounded-sm">+61 409 377 653</a>
-          </p>
-          <p>
-            <a href={MAILTO_ENQUIRY} class="hover:text-white focus-ring rounded-sm">
-              Email | {EMAIL}
-            </a>
-          </p>
-          <p>
-            Web |
-            <a href={SITE_URL} class="hover:text-white focus-ring rounded-sm ml-1">
-              {SITE_URL.replace('https://', '')}
-            </a>
-          </p>
+
+        <div class="md:col-span-4 space-y-4 text-center md:text-left">
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-brand">Direct Contact</p>
+          <dl class="space-y-3 text-sm text-neutral-300">
+            <div>
+              <dt class="text-xs uppercase tracking-widest text-neutral-500">Phone</dt>
+              <dd class="mt-0.5">
+                <a href="tel:+610409377653" class="text-neutral-200 hover:text-brand transition-colors focus-ring rounded-sm">
+                  +61 409 377 653
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-widest text-neutral-500">Email</dt>
+              <dd class="mt-0.5">
+                <a href={MAILTO_ENQUIRY} class="text-neutral-200 hover:text-brand transition-colors focus-ring rounded-sm">
+                  {EMAIL}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-widest text-neutral-500">Practice</dt>
+              <dd class="mt-0.5">
+                <a href={SITE_URL} class="text-neutral-200 hover:text-brand transition-colors focus-ring rounded-sm">
+                  {SITE_URL.replace('https://', '')}
+                </a>
+              </dd>
+            </div>
+          </dl>
         </div>
-        <div class="flex md:justify-end">
+
+        <div class="md:col-span-4 flex flex-col items-center md:items-end text-center md:text-right space-y-4">
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-brand">Start a Conversation</p>
+          <p class="text-sm text-neutral-400 max-w-xs leading-relaxed">
+            Arrange a confidential 30-minute discussion about an individual diagnostic, a CEO transition, or a leadership team reset.
+          </p>
           <a
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-block bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-6 py-3 text-sm tracking-widest uppercase transition-colors text-center focus-ring"
+            class="inline-block bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-6 py-3.5 text-xs tracking-[0.18em] uppercase transition-colors text-center focus-ring"
           >
             Book a Complimentary Consultation
           </a>
         </div>
       </div>
-      <div class="border-t border-neutral-800">
-        <div class="max-w-7xl mx-auto px-6 py-6 text-xs text-neutral-500 flex flex-col md:flex-row justify-between gap-2">
-          <p>&copy; 2026 | Sharon Williams Psychologist | All Rights Reserved.</p>
-          <p>
-            <a href="/privacy-policy" class="hover:text-white focus-ring rounded-sm">Privacy Policy</a>
-          </p>
+
+      <div class="border-t border-neutral-900">
+        <div class="max-w-7xl mx-auto px-6 py-6 text-xs text-neutral-500 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <p>&copy; 2026 Sharon Williams Psychologist. All Rights Reserved.</p>
+          <div class="flex items-center gap-6">
+            <a href="/coaching/" class="hover:text-neutral-300 transition-colors focus-ring rounded-sm">Coaching</a>
+            <a href="/videos/" class="hover:text-neutral-300 transition-colors focus-ring rounded-sm">Videos</a>
+            <a href="/privacy-policy/" class="hover:text-neutral-300 transition-colors focus-ring rounded-sm">Privacy Policy</a>
+          </div>
         </div>
       </div>
     </footer>

@@ -4,6 +4,7 @@ import { videos, getRelatedVideos } from '../../data/videos';
 import {
   VIDEO_GUIDE_UPDATED,
   chapterStartSeconds,
+  formatDuration,
   isoDuration,
   videoGuides,
 } from '../../data/video-guides';
@@ -71,19 +72,19 @@ const durationLabel = seconds === 0 ? `${minutes} min` : `${minutes} min ${secon
   }}
 >
   <article>
-    <section class="bg-neutral-900 py-12 md:py-16">
+    <section class="bg-neutral-900 py-14 md:py-20 border-b border-neutral-800/80">
       <div class="max-w-4xl mx-auto px-6">
-        <nav class="text-sm text-neutral-400 mb-6" aria-label="Breadcrumb">
+        <nav class="text-xs tracking-[0.16em] uppercase text-neutral-400 mb-6" aria-label="Breadcrumb">
           <ol class="flex flex-wrap gap-2 items-center">
-            <li><a href="/" class="hover:text-white focus-ring rounded-sm">Home</a></li>
+            <li><a href="/" class="hover:text-brand transition-colors focus-ring rounded-sm">Home</a></li>
             <li aria-hidden="true">/</li>
-            <li><a href="/videos" class="hover:text-white focus-ring rounded-sm">Videos</a></li>
+            <li><a href="/videos/" class="hover:text-brand transition-colors focus-ring rounded-sm">Videos</a></li>
             <li aria-hidden="true">/</li>
-            <li class="text-neutral-200">{video.title}</li>
+            <li class="text-brand">{video.title}</li>
           </ol>
         </nav>
-        <p class="text-white text-xs tracking-widest uppercase mb-3">{video.category}</p>
-        <h1 class="font-serif text-3xl md:text-5xl mb-4">{video.title}</h1>
+        <p class="text-brand text-xs font-semibold tracking-[0.22em] uppercase mb-3">{video.category}</p>
+        <h1 class="font-serif text-3xl md:text-5xl text-white mb-4">{video.title}</h1>
         <p class="text-sm text-neutral-400 mb-6 flex flex-wrap gap-x-3 gap-y-1">
           {publishedLabel && video.published && (
             <span>Published <time datetime={video.published}>{publishedLabel}</time></span>
@@ -91,15 +92,15 @@ const durationLabel = seconds === 0 ? `${minutes} min` : `${minutes} min ${secon
           <span aria-hidden="true">·</span>
           <span>Guide updated <time datetime={VIDEO_GUIDE_UPDATED}>{updatedLabel}</time></span>
           <span aria-hidden="true">·</span>
-          <span>{durationLabel}</span>
+          <span class="text-brand">{durationLabel}</span>
         </p>
-        <p class="text-neutral-300 text-lg leading-relaxed max-w-3xl">{guide.summary}</p>
+        <p class="text-neutral-200 text-lg leading-relaxed max-w-3xl">{guide.summary}</p>
       </div>
     </section>
 
-    <section class="bg-neutral-950 py-8">
+    <section class="bg-neutral-950 py-10">
       <div class="max-w-4xl mx-auto px-6">
-        <div class="aspect-video bg-neutral-900 border border-neutral-800">
+        <div class="aspect-video bg-neutral-900 border border-neutral-800 shadow-2xl">
           <iframe
             name="lesson-video"
             src={`https://www.youtube.com/embed/${video.youtubeId}`}
@@ -115,12 +116,13 @@ const durationLabel = seconds === 0 ? `${minutes} min` : `${minutes} min ${secon
 
     <section class="bg-neutral-950 pb-16">
       <div class="max-w-3xl mx-auto px-6 space-y-14">
-        <div>
-          <h2 class="font-serif text-2xl md:text-3xl">Key takeaways</h2>
-          <ul class="mt-6 space-y-3 text-neutral-300 leading-relaxed">
+        <div class="bg-neutral-900/60 border border-neutral-800 p-6 md:p-8">
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-brand mb-2">Executive Summary</p>
+          <h2 class="font-serif text-2xl md:text-3xl text-white">Key Takeaways</h2>
+          <ul class="mt-6 space-y-3.5 text-neutral-200 leading-relaxed">
             {guide.takeaways.map((item) => (
-              <li class="flex gap-3">
-                <span class="text-brand shrink-0" aria-hidden="true">–</span>
+              <li class="flex gap-3.5">
+                <span class="text-brand font-serif shrink-0" aria-hidden="true">&#10003;</span>
                 <span>{item}</span>
               </li>
             ))}
@@ -128,8 +130,8 @@ const durationLabel = seconds === 0 ? `${minutes} min` : `${minutes} min ${secon
         </div>
 
         <div>
-          <h2 class="font-serif text-2xl md:text-3xl">Chapters</h2>
-          <p class="mt-3 text-sm text-neutral-400">Select a chapter to play the video from that point.</p>
+          <h2 class="font-serif text-2xl md:text-3xl text-white">Chapters</h2>
+          <p class="mt-2 text-sm text-neutral-400">Select a chapter to play the video from that point.</p>
           <ol class="mt-6 border border-neutral-800 divide-y divide-neutral-800">
             {guide.chapters.map((chapter) => (
               <li>
@@ -137,12 +139,12 @@ const durationLabel = seconds === 0 ? `${minutes} min` : `${minutes} min ${secon
                   href={`https://www.youtube.com/embed/${video.youtubeId}?start=${chapterStartSeconds(chapter.time)}`}
                   target="lesson-video"
                   data-chapter
-                  class="flex gap-4 px-4 py-3 hover:bg-neutral-900 focus-ring"
+                  class="flex items-center gap-4 px-5 py-3.5 hover:bg-neutral-900 transition-colors focus-ring"
                 >
-                  <time class="text-brand text-sm tabular-nums w-12 shrink-0" datetime={`PT${chapterStartSeconds(chapter.time)}S`}>
+                  <time class="text-brand font-semibold text-sm tabular-nums w-12 shrink-0" datetime={`PT${chapterStartSeconds(chapter.time)}S`}>
                     {chapter.time}
                   </time>
-                  <span>{chapter.label}</span>
+                  <span class="text-neutral-200">{chapter.label}</span>
                 </a>
               </li>
             ))}
@@ -150,67 +152,90 @@ const durationLabel = seconds === 0 ? `${minutes} min` : `${minutes} min ${secon
         </div>
 
         <div>
-          <h2 class="font-serif text-2xl md:text-3xl">Edited transcript</h2>
-          <div class="mt-6 space-y-4 text-neutral-300 leading-relaxed">
+          <h2 class="font-serif text-2xl md:text-3xl text-white">Edited Transcript</h2>
+          <div class="mt-6 space-y-4 text-neutral-300 text-lg leading-relaxed">
             {guide.transcript.map((paragraph) => (
               <p>{paragraph}</p>
             ))}
           </div>
         </div>
 
-        <aside class="border border-neutral-800 bg-neutral-900 p-6 md:p-8">
-          <p class="text-xs tracking-widest uppercase text-neutral-400">Related coaching</p>
-          <h2 class="font-serif text-2xl md:text-3xl mt-3">{program.title}</h2>
+        <aside class="border border-brand/40 bg-neutral-900 p-6 md:p-8">
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-brand">Related Coaching</p>
+          <h2 class="font-serif text-2xl md:text-3xl text-white mt-2">{program.title}</h2>
           <p class="mt-4 text-neutral-300 leading-relaxed">{guide.coachingNote}</p>
           <a
             href={`/coaching/${program.slug}/`}
-            class="inline-block mt-6 bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-6 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
+            class="inline-block mt-6 bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-6 py-3 text-xs tracking-[0.18em] uppercase transition-colors focus-ring"
           >
-            View this program
+            View This Program
           </a>
         </aside>
       </div>
     </section>
 
     <section class="bg-neutral-950 pb-16">
-      <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row justify-between gap-4 text-sm tracking-widest uppercase">
+      <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row justify-between gap-4 text-xs font-semibold tracking-[0.18em] uppercase border-t border-neutral-900 pt-8">
         {prev ? (
-          <a href={`/videos/${prev.slug}`} class="text-white hover:underline focus-ring rounded-sm">
+          <a href={`/videos/${prev.slug}/`} class="text-neutral-300 hover:text-brand transition-colors focus-ring rounded-sm">
             &larr; {prev.title}
           </a>
         ) : (
           <span></span>
         )}
         {next && (
-          <a href={`/videos/${next.slug}`} class="text-white hover:underline focus-ring rounded-sm sm:text-right">
+          <a href={`/videos/${next.slug}/`} class="text-neutral-300 hover:text-brand transition-colors focus-ring rounded-sm sm:text-right">
             {next.title} &rarr;
           </a>
         )}
       </div>
     </section>
 
-    <section class="bg-neutral-900 py-20 border-t border-neutral-800">
+    <section class="bg-neutral-900 py-20 border-t border-neutral-800/80">
       <div class="max-w-7xl mx-auto px-6">
-        <h2 class="font-serif text-2xl md:text-3xl mb-10">You might also like</h2>
+        <p class="text-xs font-semibold tracking-[0.22em] uppercase text-brand mb-2">
+          Continue Watching
+        </p>
+        <h2 class="font-serif text-2xl md:text-4xl text-white mb-10">You Might Also Like</h2>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {related.map((item) => (
-            <a
-              href={`/videos/${item.slug}`}
-              class="group bg-neutral-950 border border-neutral-800 hover:border-amber-500 transition-colors flex flex-col focus-ring"
-            >
-              <div class="aspect-video overflow-hidden motion-safe-hover-scale">
-                <img
-                  src={`https://i.ytimg.com/vi/${item.youtubeId}/hqdefault.jpg`}
-                  alt=""
-                  loading="lazy"
-                  class="w-full h-full object-cover transition-transform duration-500"
-                />
-              </div>
-              <div class="p-4">
-                <h3 class="font-serif text-lg">{item.title}</h3>
-              </div>
-            </a>
-          ))}
+          {related.map((item) => {
+            const itemGuide = videoGuides[item.slug];
+            const itemDuration = itemGuide ? formatDuration(itemGuide.durationSeconds) : null;
+            return (
+              <a
+                href={`/videos/${item.slug}/`}
+                class="group bg-neutral-950 border border-neutral-800 hover:border-brand transition-colors flex flex-col focus-ring"
+              >
+                <div class="relative aspect-video overflow-hidden motion-safe-hover-scale bg-neutral-900">
+                  <img
+                    src={`https://i.ytimg.com/vi/${item.youtubeId}/hqdefault.jpg`}
+                    alt=""
+                    loading="lazy"
+                    class="w-full h-full object-cover transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-neutral-950/15 to-transparent"></div>
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="w-10 h-10 rounded-full bg-neutral-950/75 border border-brand/80 text-brand group-hover:bg-brand group-hover:text-neutral-950 transition-all duration-300 flex items-center justify-center">
+                      <svg class="w-3.5 h-3.5 ml-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </span>
+                  </div>
+                  {itemDuration && (
+                    <span class="absolute bottom-2 right-2 bg-neutral-950/85 border border-neutral-700/80 text-neutral-200 text-xs tabular-nums px-2 py-0.5">
+                      {itemDuration}
+                    </span>
+                  )}
+                </div>
+                <div class="p-5 flex-1 flex flex-col">
+                  <p class="text-[11px] font-semibold tracking-[0.16em] uppercase text-brand mb-1.5">
+                    {item.category}
+                  </p>
+                  <h3 class="font-serif text-lg text-white group-hover:text-brand transition-colors">{item.title}</h3>
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -10,6 +10,8 @@ import videoStrategy from '../assets/images/video-strategy.jpg';
 import videoEliteRowers from '../assets/images/video-elite-rowers.jpg';
 import { coachingPrograms } from '../data/coaching';
 import { videos } from '../data/videos';
+import { formatDuration, videoGuides } from '../data/video-guides';
+import { CALENDLY_URL } from '../lib/links';
 import NewsletterForm from '../components/NewsletterForm.astro';
 
 const featuredVideoSlugs = [
@@ -29,6 +31,18 @@ const featuredVideos = featuredVideoSlugs
   .map((slug) => videos.find((v) => v.slug === slug))
   .filter((v): v is (typeof videos)[number] => Boolean(v));
 
+const clientOrganisations = [
+  'Commonwealth Bank',
+  'BHP',
+  'Rio Tinto',
+  'Ernst & Young',
+  'American Express',
+  'ASIC',
+  'Australian Federal Police',
+  'Coca-Cola',
+  'Woolworths',
+];
+
 /**
  * The positioning line stays on the hero either way.
  * Set this to false to restore the original hero, where that line is the H1.
@@ -37,44 +51,71 @@ const serviceLedHero = true;
 ---
 
 <Layout schemaType="person">
-  <section class="relative">
+  <section class="relative overflow-hidden">
     <SiteImage
       src={heroGlassCeiling}
       alt="Glass ceiling viewed from below"
-      class="w-full h-[calc(100vh-80px)] object-cover"
+      class="w-full h-[calc(100vh-80px)] min-h-[580px] object-cover"
       loading="eager"
       fetchpriority="high"
     />
-    <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/45 to-neutral-950/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/65 via-neutral-950/55 to-neutral-950/90"></div>
     <div class="absolute inset-0 flex items-center">
-      <div class="max-w-7xl mx-auto px-6 w-full">
+      <div class="max-w-7xl mx-auto px-6 w-full py-12">
         {serviceLedHero ? (
           <>
-            <h1 class="text-xs md:text-sm tracking-wide md:tracking-widest uppercase text-white mb-4 md:mb-5 max-w-3xl leading-relaxed">
-              Executive psychologist and trusted advisor to CEOs
+            <h1 class="text-xs md:text-sm font-semibold tracking-[0.22em] uppercase text-brand mb-5 max-w-3xl leading-relaxed">
+              Executive Psychologist &amp; Trusted Advisor to CEOs
             </h1>
-            <p class="font-serif text-4xl md:text-6xl lg:text-7xl tracking-tight max-w-4xl">
+            <p class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-white max-w-4xl leading-[1.08]">
               What made you successful is now holding you back
-            </p>
-            <p class="mt-6 text-lg md:text-2xl text-neutral-200 tracking-wide max-w-3xl">
-              For CEOs and C-suite leaders in Australia
             </p>
           </>
         ) : (
           <>
-            <p class="sr-only">Executive psychologist and coach for CEOs and C-suite leaders in Australia</p>
-            <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl tracking-tight max-w-4xl">
+            <p class="text-xs md:text-sm font-semibold tracking-[0.22em] uppercase text-brand mb-5">
+              Executive Psychologist &amp; Trusted Advisor to CEOs
+            </p>
+            <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-white max-w-4xl leading-[1.08]">
               What made you successful is now holding you back
             </h1>
-            <p class="mt-6 text-lg md:text-2xl text-neutral-200 tracking-wide">
-              Psychologist and trusted advisor to c-suite leaders
-            </p>
           </>
         )}
-        <p class="mt-2 text-lg md:text-2xl text-neutral-200 tracking-wide max-w-3xl">
-          I uncover the hidden derailers that traditional coaching misses
+        <p class="mt-6 text-lg md:text-2xl text-neutral-200 leading-relaxed max-w-2xl">
+          For CEOs and C-suite leaders in Australia — I uncover the hidden derailers that traditional coaching misses.
         </p>
+        <div class="mt-10 flex flex-wrap items-center gap-4">
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-7 py-3.5 text-xs sm:text-sm tracking-[0.18em] uppercase transition-colors focus-ring"
+          >
+            Book a Complimentary Consultation
+          </a>
+          <a
+            href="/coaching/"
+            class="inline-block bg-neutral-950/50 backdrop-blur-sm border border-neutral-500 hover:border-brand text-white hover:text-brand font-semibold px-7 py-3.5 text-xs sm:text-sm tracking-[0.18em] uppercase transition-colors focus-ring"
+          >
+            Explore Coaching Programs
+          </a>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-950 border-y border-neutral-800/80 py-10" aria-label="Organisations advised">
+    <div class="max-w-7xl mx-auto px-6">
+      <p class="text-center text-xs font-semibold tracking-[0.24em] uppercase text-brand mb-6">
+        20+ Years Advising Senior Leaders Across Australia&rsquo;s Most Demanding Organisations
+      </p>
+      <ul class="flex flex-wrap justify-center items-center gap-x-8 gap-y-3 text-xs sm:text-sm tracking-[0.16em] uppercase text-neutral-400">
+        {clientOrganisations.map((org) => (
+          <li class="flex items-center gap-8">
+            <span class="hover:text-neutral-200 transition-colors">{org}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
@@ -82,18 +123,21 @@ const serviceLedHero = true;
     <SiteImage
       src={executiveCoach}
       alt="Sharon Williams, executive coach"
-      class="w-full h-[50vh] md:h-[80vh] object-cover object-[70%_top]"
+      class="w-full h-[55vh] md:h-[80vh] object-cover object-[70%_top]"
     />
-    <div class="absolute inset-0 bg-gradient-to-r from-neutral-950/75 via-neutral-950/45 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-neutral-950/85 via-neutral-950/55 to-transparent"></div>
     <div class="absolute inset-0 flex items-center">
       <div class="max-w-7xl mx-auto px-6 w-full">
-        <div class="max-w-xl md:max-w-[48%] text-left">
-          <blockquote class="font-serif text-3xl md:text-5xl leading-tight italic">
-            "At the top, your greatest challenge is the one you can't see."
+        <div class="max-w-xl md:max-w-[50%] text-left">
+          <p class="text-xs font-semibold tracking-[0.22em] uppercase text-brand mb-4">
+            The Blind Spot at the Top
+          </p>
+          <blockquote class="font-serif text-3xl md:text-5xl leading-tight italic text-white">
+            &ldquo;At the top, your greatest challenge is the one you can&rsquo;t see.&rdquo;
           </blockquote>
           <a
-            href="/about-sharon"
-            class="inline-block mt-10 bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-8 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
+            href="/about-sharon/"
+            class="inline-block mt-10 bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-8 py-3.5 text-xs sm:text-sm tracking-[0.18em] uppercase transition-colors focus-ring"
           >
             About Sharon
           </a>
@@ -102,17 +146,26 @@ const serviceLedHero = true;
     </div>
   </section>
 
-  <section class="bg-neutral-950 py-24">
+  <section class="bg-neutral-950 py-24 md:py-28">
     <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
-      <p class="font-serif text-2xl md:text-3xl leading-relaxed">
+      <p class="text-xs font-semibold tracking-[0.22em] uppercase text-brand">
+        Clinical Assessment, Not Conventional Coaching
+      </p>
+      <p class="font-serif text-2xl md:text-4xl leading-relaxed text-white">
         Perfectionism and over-functioning are brilliant assets, until they become derailers.
       </p>
-      <p class="font-serif text-2xl md:text-3xl leading-relaxed text-neutral-300">
-        I help you identify and remove the self-sabotaging behaviours you can't see in yourself.
+      <p class="font-serif text-xl md:text-3xl leading-relaxed text-neutral-300">
+        I help you identify and remove the self-sabotaging behaviours you can&rsquo;t see in yourself.
       </p>
-      <a href="/coaching" class="inline-block text-white text-sm tracking-widest uppercase hover:text-neutral-300 transition-colors focus-ring rounded-sm">
-        Explore coaching programs &rarr;
-      </a>
+      <div class="pt-4">
+        <a
+          href="/coaching/"
+          class="inline-flex items-center gap-2 text-brand text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase hover:text-brand-hover transition-colors focus-ring rounded-sm"
+        >
+          <span>Explore coaching programs</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -120,23 +173,43 @@ const serviceLedHero = true;
     <SiteImage
       src={sydneyHarbourBridge}
       alt=""
-      class="w-full h-[30vh] md:h-[50vh] object-cover"
+      class="w-full h-[30vh] md:h-[48vh] object-cover"
     />
-    <div class="absolute inset-0 bg-neutral-950/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/60 via-neutral-950/35 to-neutral-900/90"></div>
   </section>
 
-  <section class="bg-neutral-900 py-24">
+  <section class="bg-neutral-900 py-24 md:py-28">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="grid gap-10 md:gap-8 md:grid-cols-3">
-        {coachingPrograms.map((program) => (
-          <article class="bg-neutral-950 border border-neutral-800 p-8 flex flex-col">
-            <h2 class="font-serif text-2xl md:text-3xl text-white mb-6">{program.shortTitle}</h2>
-            <div class="space-y-4 text-neutral-300 flex-1">
-              <p>{program.subtitle}</p>
+      <div class="max-w-3xl mb-14">
+        <p class="text-xs font-semibold tracking-[0.22em] uppercase text-brand mb-3">
+          Executive Advisory Programs
+        </p>
+        <h2 class="font-serif text-3xl md:text-5xl text-white">
+          Three Ways We Work Together
+        </h2>
+      </div>
+      <div class="grid gap-8 md:grid-cols-3">
+        {coachingPrograms.map((program, idx) => (
+          <article class="group relative bg-neutral-950 border border-neutral-800 hover:border-brand/70 transition-colors p-8 md:p-10 flex flex-col">
+            <div class="flex items-center justify-between gap-4 mb-6">
+              <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand">
+                {program.hub.eyebrow}
+              </span>
+              <span class="font-serif text-sm text-neutral-500">0{idx + 1}</span>
+            </div>
+            <h3 class="font-serif text-2xl md:text-3xl text-white mb-4 group-hover:text-brand transition-colors">
+              {program.shortTitle}
+            </h3>
+            <p class="text-neutral-300 leading-relaxed flex-1">
+              {program.subtitle}
+            </p>
+            <div class="mt-6 pt-6 border-t border-neutral-800/80 text-sm text-neutral-400">
+              <span class="text-xs tracking-widest uppercase text-neutral-500 block mb-1">Suited to</span>
+              {program.hub.suitedTo}
             </div>
             <a
-              href={`/coaching/${program.slug}`}
-              class="inline-block mt-8 self-start bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-6 py-2.5 text-sm tracking-widest uppercase transition-colors focus-ring"
+              href={`/coaching/${program.slug}/`}
+              class="inline-block mt-8 self-start bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-6 py-3 text-xs tracking-[0.18em] uppercase transition-colors focus-ring"
             >
               Learn More
             </a>
@@ -146,19 +219,36 @@ const serviceLedHero = true;
     </div>
   </section>
 
-  <section class="bg-neutral-950 py-24">
+  <section class="bg-neutral-950 py-24 md:py-28">
     <div class="max-w-7xl mx-auto px-6">
-      <h2 class="font-serif text-3xl md:text-4xl mb-10 text-center">Resources</h2>
-      <div class="overflow-x-auto -mx-6 px-6 pb-4">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <p class="text-xs font-semibold tracking-[0.22em] uppercase text-brand mb-3">
+            Executive Briefings
+          </p>
+          <h2 class="font-serif text-3xl md:text-5xl text-white">Shorts from Sharon</h2>
+        </div>
+        <a
+          href="/videos/"
+          class="inline-flex items-center gap-2 text-brand text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase hover:text-brand-hover transition-colors focus-ring rounded-sm self-start md:self-auto"
+        >
+          <span>View all {videos.length} videos</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <div class="overflow-x-auto md:overflow-visible no-scrollbar -mx-6 px-6 pb-2">
         <div class="flex gap-6 snap-x snap-mandatory min-w-max md:min-w-0 md:grid md:grid-cols-2 lg:grid-cols-4">
           {featuredVideos.map((video) => {
             const localImage = featuredImages[video.slug];
+            const guide = videoGuides[video.slug];
+            const durationBadge = guide ? formatDuration(guide.durationSeconds) : null;
             return (
               <a
-                href={`/videos/${video.slug}`}
-                class="group snap-start shrink-0 w-80 md:w-auto bg-neutral-900 border border-neutral-800 hover:border-amber-500 transition-colors flex flex-col focus-ring"
+                href={`/videos/${video.slug}/`}
+                class="group snap-start shrink-0 w-80 md:w-auto bg-neutral-900 border border-neutral-800 hover:border-brand transition-colors flex flex-col focus-ring"
               >
-                <div class="aspect-video overflow-hidden motion-safe-hover-scale">
+                <div class="relative aspect-video overflow-hidden motion-safe-hover-scale bg-neutral-950">
                   {localImage ? (
                     <SiteImage
                       src={localImage}
@@ -174,30 +264,49 @@ const serviceLedHero = true;
                       class="w-full h-full object-cover transition-transform duration-500"
                     />
                   )}
+                  <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-neutral-950/15 to-transparent"></div>
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="w-12 h-12 rounded-full bg-neutral-950/75 border border-brand/80 text-brand group-hover:bg-brand group-hover:text-neutral-950 transition-all duration-300 flex items-center justify-center shadow-lg">
+                      <svg class="w-4 h-4 ml-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </span>
+                  </div>
+                  {durationBadge && (
+                    <span class="absolute bottom-2.5 right-2.5 bg-neutral-950/85 border border-neutral-700/80 text-neutral-200 text-xs tabular-nums px-2 py-0.5">
+                      {durationBadge}
+                    </span>
+                  )}
                 </div>
                 <div class="p-6 flex-1 flex flex-col">
-                  <h3 class="font-serif text-xl mb-4 flex-1">{video.title}</h3>
-                  <span class="text-white text-sm tracking-widest uppercase">Watch video &rarr;</span>
+                  <p class="text-[11px] font-semibold tracking-[0.18em] uppercase text-brand mb-2">
+                    {video.category}
+                  </p>
+                  <h3 class="font-serif text-xl text-white group-hover:text-brand transition-colors mb-5 flex-1">
+                    {video.title}
+                  </h3>
+                  <span class="text-neutral-300 group-hover:text-white text-xs font-semibold tracking-[0.18em] uppercase inline-flex items-center gap-1.5">
+                    <span>Watch lesson</span>
+                    <span aria-hidden="true" class="text-brand">&rarr;</span>
+                  </span>
                 </div>
               </a>
             );
           })}
         </div>
       </div>
-      <p class="text-center mt-8">
-        <a href="/videos" class="text-white text-sm tracking-widest uppercase hover:underline focus-ring rounded-sm">
-          View all videos &rarr;
-        </a>
-      </p>
     </div>
   </section>
 
-  <section class="bg-newsletter py-20 md:py-24" aria-labelledby="newsletter-heading">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 id="newsletter-heading" class="font-serif text-3xl md:text-5xl mb-6">
+  <section class="bg-newsletter py-20 md:py-24 border-t border-brand/20" aria-labelledby="newsletter-heading">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <p class="text-xs font-semibold tracking-[0.22em] uppercase text-brand mb-4">
+        Executive Psychology Briefing
+      </p>
+      <h2 id="newsletter-heading" class="font-serif text-3xl md:text-5xl text-white mb-6">
         The Psychology Behind Exceptional Leadership
       </h2>
-      <p class="text-white/85 text-lg mb-10 max-w-3xl mx-auto">
+      <p class="text-white/85 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
         Psychological insights on leadership blind spots, derailers, and the mindset shifts that
         separate good leaders from exceptional ones.
       </p>

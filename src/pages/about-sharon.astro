@@ -9,105 +9,214 @@ import cessna from '../assets/images/about-cessna.jpg';
 const title = 'Registered Psychologist for CEOs | Sharon Williams';
 const description =
   'Sharon Williams advises Australian CEOs, using clinical assessment to uncover the leadership derailers they cannot see.';
+
+const dartsModel = [
+  {
+    step: '01',
+    letter: 'D',
+    title: 'Discovery',
+    detail:
+      'Psychometric assessment battery, 360-degree leadership review, and structured stakeholder interviews.',
+  },
+  {
+    step: '02',
+    letter: 'A',
+    title: 'Awareness',
+    detail:
+      'Diagnostic debrief naming the hidden derailers and the subconscious payoffs keeping them in place.',
+  },
+  {
+    step: '03',
+    letter: 'R',
+    title: 'Roadmap',
+    detail:
+      'A precise psychological intervention strategy tailored to the pressures of your role and board.',
+  },
+  {
+    step: '04',
+    letter: 'T',
+    title: 'Targeted Plan',
+    detail:
+      'Sustained 1:1 executive advisory as real-world decisions and high-stakes conversations unfold.',
+  },
+  {
+    step: '05',
+    letter: 'S',
+    title: 'Success & Reassess',
+    detail:
+      'Clinical reassessment against baseline measures to confirm the behavioural shift has taken root.',
+  },
+];
+
+const clientOrganisations = [
+  'Ernst & Young',
+  'American Express',
+  'Commonwealth Bank',
+  'ASIC',
+  'Australian Federal Police',
+  'BHP',
+  'Rio Tinto',
+  'Coca-Cola',
+  'Woolworths',
+];
 ---
 
 <Layout title={title} description={description} path="/about-sharon" schemaType="person">
-  <section class="relative">
+  <section class="relative overflow-hidden">
     <SiteImage
       src={heroPortrait}
       alt="Sharon Williams"
-      class="w-full h-[calc(100vh-80px)] img-cover-top"
+      class="w-full h-[calc(100vh-80px)] min-h-[540px] img-cover-top"
       loading="eager"
       fetchpriority="high"
     />
-    <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/20 to-neutral-950/80"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/25 to-neutral-950/85"></div>
     <div class="absolute inset-0 flex items-end">
       <div class="max-w-7xl mx-auto px-6 pb-12 md:pb-16 w-full">
-        <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl lowercase tracking-tight max-w-4xl">
-          lead without the blind spots
+        <p class="text-xs md:text-sm font-semibold tracking-[0.22em] uppercase text-brand mb-3">
+          About Sharon Williams
+        </p>
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-white max-w-4xl">
+          Lead Without the Blind Spots
         </h1>
+        <p class="mt-4 text-lg text-neutral-300 max-w-2xl">
+          Registered Psychologist and Trusted Advisor to CEOs and C-suite executives across Australia.
+        </p>
       </div>
     </div>
   </section>
 
-  <section class="bg-neutral-950 py-24">
-    <div class="max-w-6xl mx-auto px-6 grid gap-12 md:grid-cols-2 items-center">
-      <div>
-        <SiteImage src={fremantle} alt="Sharon Williams in Fremantle" preset="panel" class="w-full aspect-[4/5] img-cover-top" />
+  <section class="bg-neutral-950 py-24 md:py-28">
+    <div class="max-w-6xl mx-auto px-6 grid gap-12 lg:gap-16 md:grid-cols-2 items-center">
+      <div class="relative">
+        <SiteImage
+          src={fremantle}
+          alt="Sharon Williams in Fremantle"
+          preset="panel"
+          class="w-full aspect-[4/5] img-cover-top border border-neutral-800"
+        />
       </div>
       <div class="space-y-6">
-        <h2 class="font-serif text-3xl md:text-4xl">Hi, I'm Sharon Williams</h2>
-        <p class="text-neutral-300 leading-relaxed">
+        <p class="text-xs font-semibold tracking-[0.22em] uppercase text-brand">
+          20+ Years in Executive Psychology
+        </p>
+        <h2 class="font-serif text-3xl md:text-5xl text-white">Hi, I&rsquo;m Sharon Williams</h2>
+        <p class="text-neutral-300 text-lg leading-relaxed">
           Sharon Williams is a Registered Psychologist and Trusted Advisor to CEOs and C-suite executives
-          across Australia's most demanding sectors — banking &amp; finance, mining, technology, FMCG, and
+          across Australia&rsquo;s most demanding sectors — banking &amp; finance, mining, technology, FMCG, and
           government.
         </p>
-        <p class="text-neutral-300 leading-relaxed">
+        <p class="text-neutral-300 text-lg leading-relaxed">
           For over 20 years, she has used clinical-grade psychological assessment to uncover what
           conventional coaching cannot: the hidden derailers that silently sabotage senior leaders under
           pressure.
         </p>
-        <a
-          href={CALENDLY_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-block bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-6 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
-        >
-          Book a Complimentary Consultation
-        </a>
-        <a
-          href="/coaching"
-          class="inline-block border border-neutral-600 hover:border-amber-400 text-neutral-200 font-semibold px-6 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
-        >
-          View coaching programs
-        </a>
+        <div class="pt-4 flex flex-wrap gap-4">
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-6 py-3.5 text-xs sm:text-sm tracking-[0.18em] uppercase transition-colors focus-ring"
+          >
+            Book a Complimentary Consultation
+          </a>
+          <a
+            href="/coaching/"
+            class="inline-block border border-neutral-600 hover:border-brand text-neutral-200 hover:text-brand font-semibold px-6 py-3.5 text-xs sm:text-sm tracking-[0.18em] uppercase transition-colors focus-ring"
+          >
+            View Coaching Programs
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="bg-neutral-900 py-24">
-    <div class="max-w-3xl mx-auto px-6 space-y-10">
-      <h2 class="font-serif text-3xl md:text-4xl text-center">Sharon's Approach</h2>
-      <p class="text-neutral-300 leading-relaxed text-lg">
-        With 20 years running her own practice as an Executive Coach and working with clients such as
-        Ernst &amp; Young, American Express, Commonwealth Bank, ASIC, Australian Federal Police, BHP, Rio
-        Tinto, Coca-Cola, and Woolworths, Sharon Williams understands what results look like for leaders.
-      </p>
-      <p class="text-neutral-300 leading-relaxed text-lg">
-        Her belief is that working at the highest level — with the CEO or C-Suite — positively impacts
-        thousands of people and is what drives her work in leadership coaching. Sharon holds a long track
-        record of getting exceptional results for her coaching clients.
-      </p>
-
-      <div class="space-y-4 pt-4">
-        <h3 class="font-serif text-2xl text-white">The Method</h3>
-        <p class="text-neutral-300 leading-relaxed">
-          This is not just coaching. It is a psychological diagnostic process.
+  <section class="bg-neutral-900 py-24 md:py-28 border-t border-neutral-800/80">
+    <div class="max-w-6xl mx-auto px-6 space-y-20">
+      <div class="max-w-3xl mx-auto space-y-8 text-center">
+        <p class="text-xs font-semibold tracking-[0.22em] uppercase text-brand">
+          Clinical Rigour at the C-Suite Level
         </p>
-        <p class="text-neutral-300 leading-relaxed">
-          Every engagement begins with a comprehensive battery of psychometric assessments, including a
-          360-degree leadership review, a derailer-specific assessment, and structured stakeholder
-          interviews, designed to surface what no amount of feedback or self-reflection can reach: the
-          deeply embedded behavioural patterns that derail leaders under pressure.
+        <h2 class="font-serif text-3xl md:text-5xl text-white">Sharon&rsquo;s Approach</h2>
+        <p class="text-neutral-300 leading-relaxed text-lg">
+          With 20 years running her own practice as an Executive Coach and working with clients such as
+          Ernst &amp; Young, American Express, Commonwealth Bank, ASIC, Australian Federal Police, BHP, Rio
+          Tinto, Coca-Cola, and Woolworths, Sharon Williams understands what results look like for leaders.
         </p>
-        <p class="text-neutral-300 leading-relaxed">
-          Most executives have never been assessed at this depth. When they are, the insight alone changes
-          how they lead.
+        <p class="text-neutral-300 leading-relaxed text-lg">
+          Her belief is that working at the highest level — with the CEO or C-Suite — positively impacts
+          thousands of people and is what drives her work in leadership coaching. Sharon holds a long track
+          record of getting exceptional results for her coaching clients.
         </p>
       </div>
 
-      <div class="space-y-4 pt-4">
-        <h3 class="font-serif text-2xl text-white">Who I work with</h3>
-        <p class="text-neutral-300 leading-relaxed">
-          My clients run banks, mining organisations, government departments, and technology companies.
+      <div class="border-y border-neutral-800 py-8">
+        <p class="text-center text-xs font-semibold tracking-[0.22em] uppercase text-neutral-400 mb-5">
+          Experience Advising Senior Leaders At
         </p>
-        <p class="text-neutral-300 leading-relaxed">
-          They've already succeeded. They don't need coaching.
-        </p>
-        <p class="text-neutral-300 leading-relaxed">
-          They need someone who will tell them the truth that most peers, board members, or executive
-          coaches won't.
-        </p>
+        <ul class="flex flex-wrap justify-center gap-x-8 gap-y-3 text-xs sm:text-sm tracking-[0.16em] uppercase text-brand">
+          {clientOrganisations.map((org) => (
+            <li>{org}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="grid gap-12 lg:grid-cols-2 items-start">
+        <div class="bg-neutral-950 border border-neutral-800 p-8 md:p-10 space-y-5">
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-brand">01 / Diagnostic Depth</p>
+          <h3 class="font-serif text-2xl md:text-3xl text-white">The Method</h3>
+          <p class="text-neutral-200 font-medium leading-relaxed">
+            This is not just coaching. It is a psychological diagnostic process.
+          </p>
+          <p class="text-neutral-300 leading-relaxed">
+            Every engagement begins with a comprehensive battery of psychometric assessments, including a
+            360-degree leadership review, a derailer-specific assessment, and structured stakeholder
+            interviews, designed to surface what no amount of feedback or self-reflection can reach: the
+            deeply embedded behavioural patterns that derail leaders under pressure.
+          </p>
+          <p class="text-neutral-300 leading-relaxed">
+            Most executives have never been assessed at this depth. When they are, the insight alone changes
+            how they lead.
+          </p>
+        </div>
+
+        <div class="bg-neutral-950 border border-neutral-800 p-8 md:p-10 space-y-5">
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-brand">02 / Candid Counsel</p>
+          <h3 class="font-serif text-2xl md:text-3xl text-white">Who I Work With</h3>
+          <p class="text-neutral-300 leading-relaxed">
+            My clients run banks, mining organisations, government departments, and technology companies.
+          </p>
+          <p class="text-neutral-200 font-medium leading-relaxed">
+            They&rsquo;ve already succeeded. They don&rsquo;t need coaching.
+          </p>
+          <p class="text-neutral-300 leading-relaxed">
+            They need someone who will tell them the truth that most peers, board members, or executive
+            coaches won&rsquo;t.
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-10">
+        <div class="text-center max-w-2xl mx-auto">
+          <p class="text-xs font-semibold tracking-[0.22em] uppercase text-brand mb-3">
+            The DARTS Executive Leadership Coaching Model
+          </p>
+          <h3 class="font-serif text-2xl md:text-4xl text-white">
+            Five Stages from Diagnostic to Sustained Shift
+          </h3>
+        </div>
+        <ol class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {dartsModel.map((item) => (
+            <li class="bg-neutral-950 border border-neutral-800 hover:border-brand/60 transition-colors p-6 flex flex-col">
+              <div class="flex items-baseline justify-between mb-4 pb-3 border-b border-neutral-800">
+                <span class="font-serif text-3xl text-brand">{item.letter}</span>
+                <span class="text-xs tracking-[0.2em] uppercase text-neutral-500">Step {item.step}</span>
+              </div>
+              <h4 class="font-serif text-xl text-white mb-2">{item.title}</h4>
+              <p class="text-sm text-neutral-300 leading-relaxed flex-1">{item.detail}</p>
+            </li>
+          ))}
+        </ol>
       </div>
     </div>
   </section>
@@ -118,15 +227,18 @@ const description =
       alt="Sharon next to a Cessna 152"
       class="w-full h-[60vh] md:h-[80vh] img-cover-face"
     />
-    <div class="absolute inset-0 bg-neutral-950/60"></div>
+    <div class="absolute inset-0 bg-neutral-950/65"></div>
     <div class="absolute inset-0 flex items-center justify-center">
       <div class="max-w-4xl mx-auto px-6 text-center">
-        <blockquote class="font-serif text-2xl md:text-4xl leading-relaxed italic space-y-6">
+        <p class="text-xs font-semibold tracking-[0.22em] uppercase text-brand mb-4">
+          Beyond the Boardroom
+        </p>
+        <blockquote class="font-serif text-2xl md:text-4xl leading-relaxed italic text-white space-y-6">
           <p>
             Sharon also has an adventurous side… she has travelled to 55 countries, has climbed Mount
             Kilimanjaro and is learning to fly a Cessna 152.
           </p>
-          <p class="text-white not-italic font-sans text-lg md:text-xl tracking-wide">
+          <p class="text-neutral-200 not-italic font-sans text-lg md:text-xl tracking-wide max-w-3xl mx-auto">
             Motivated AND motivating, she challenges her clients to think big — because she knows that
             leaders have to take calculated risks to get results.
           </p>

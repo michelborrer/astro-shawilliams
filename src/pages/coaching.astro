@@ -5,6 +5,7 @@ import heroChess from '../assets/images/coaching-hero-chess.jpg';
 import standOut from '../assets/images/coaching-stand-out.jpg';
 import { imagePositionClass } from '../lib/imagePosition';
 import { coachingPrograms, howIWork, coachingOutcomes } from '../data/coaching';
+import { CALENDLY_URL } from '../lib/links';
 
 const title = 'Executive Coaching Programs | Sharon Williams';
 const description =
@@ -12,19 +13,22 @@ const description =
 ---
 
 <Layout title={title} description={description} path="/coaching" schemaType="person">
-  <section class="relative">
+  <section class="relative overflow-hidden">
     <SiteImage
       src={heroChess}
       alt="Chess pieces"
-      class="w-full h-[calc(100vh-80px)] object-cover object-center"
+      class="w-full h-[calc(100vh-80px)] min-h-[540px] object-cover object-center"
       loading="eager"
       fetchpriority="high"
     />
-    <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/20 to-neutral-950/80"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/25 to-neutral-950/85"></div>
     <div class="absolute inset-0 flex items-end">
       <div class="max-w-7xl mx-auto px-6 pb-12 md:pb-16 w-full">
-        <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl tracking-tight max-w-4xl">
-          EXECUTIVE coaching
+        <p class="text-xs md:text-sm font-semibold tracking-[0.22em] uppercase text-brand mb-3">
+          C-Suite Advisory &amp; Diagnostics
+        </p>
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-white max-w-4xl">
+          Executive Coaching
         </h1>
         <p class="mt-4 text-lg text-neutral-300 max-w-2xl">
           Psychometric diagnostics and sustained advisory for CEOs and C-suite leaders across Australia.
@@ -33,60 +37,85 @@ const description =
     </div>
   </section>
 
-  <section class="bg-neutral-900 py-24">
+  <section class="bg-neutral-900 py-24 md:py-28 border-b border-neutral-800/80">
     <div class="max-w-7xl mx-auto px-6">
-      <h2 class="font-serif text-3xl md:text-4xl mb-12 text-center">How I work</h2>
-      <div class="grid gap-6 md:grid-cols-3">
-        {howIWork.map((step) => (
-          <article class="bg-neutral-950 border border-neutral-800 p-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <p class="text-xs font-semibold tracking-[0.22em] uppercase text-brand mb-3">
+          Clinical Methodology
+        </p>
+        <h2 class="font-serif text-3xl md:text-5xl text-white">How I Work</h2>
+      </div>
+      <div class="grid gap-8 md:grid-cols-3">
+        {howIWork.map((step, index) => (
+          <article class="bg-neutral-950 border border-neutral-800 hover:border-brand/60 transition-colors p-8 md:p-10 flex flex-col">
+            <span class="font-serif text-3xl text-brand mb-5 pb-4 border-b border-neutral-800">
+              0{index + 1}
+            </span>
             <h3 class="font-serif text-2xl md:text-3xl text-white mb-4">{step.title}</h3>
-            <p class="text-neutral-300 leading-relaxed">{step.body}</p>
+            <p class="text-neutral-300 leading-relaxed flex-1">{step.body}</p>
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="bg-neutral-950 py-24">
+  <section class="bg-neutral-950 py-24 md:py-28">
     <div class="max-w-7xl mx-auto px-6">
-      <h2 class="font-serif text-3xl md:text-4xl mb-4">Which engagement</h2>
-      <p class="text-neutral-300 text-lg leading-relaxed max-w-3xl mb-12">
-        Three ways to work together. Choose by the question in front of you. Who each program is for, and everything included, is on that program’s own page.
-      </p>
+      <div class="max-w-3xl mb-14">
+        <p class="text-xs font-semibold tracking-[0.22em] uppercase text-brand mb-3">
+          Compare Engagements
+        </p>
+        <h2 class="font-serif text-3xl md:text-5xl text-white mb-4">Which Engagement</h2>
+        <p class="text-neutral-300 text-lg leading-relaxed">
+          Three ways to work together. Choose by the question in front of you. Who each program is for, and everything included, is on that program&rsquo;s own page.
+        </p>
+      </div>
       <div class="grid gap-8 lg:grid-cols-3">
         {coachingPrograms.map((program) => (
-          <article id={program.anchorId} class="scroll-mt-24 bg-neutral-900 border border-neutral-800 flex flex-col">
-            <SiteImage
-              src={program.image}
-              alt={program.imageAlt}
-              preset="card"
-              class:list={['w-full aspect-[4/5]', imagePositionClass(program.imagePosition)]}
-            />
+          <article
+            id={program.anchorId}
+            class="group scroll-mt-24 bg-neutral-900 border border-neutral-800 hover:border-brand/70 transition-colors flex flex-col"
+          >
+            <div class="overflow-hidden motion-safe-hover-scale bg-neutral-950">
+              <SiteImage
+                src={program.image}
+                alt={program.imageAlt}
+                preset="card"
+                class:list={[
+                  'w-full aspect-[4/5] transition-transform duration-500',
+                  imagePositionClass(program.imagePosition),
+                ]}
+              />
+            </div>
             <div class="p-8 flex flex-col flex-1">
-              <p class="text-xs tracking-widest uppercase text-neutral-400">{program.hub.eyebrow}</p>
-              <h3 class="font-serif text-2xl md:text-3xl mt-3">{program.title}</h3>
+              <p class="text-xs font-semibold tracking-[0.2em] uppercase text-brand">{program.hub.eyebrow}</p>
+              <h3 class="font-serif text-2xl md:text-3xl text-white group-hover:text-brand transition-colors mt-3">
+                {program.title}
+              </h3>
               <p class="mt-4 text-neutral-300 leading-relaxed">{program.hub.summary}</p>
-              <dl class="mt-6 space-y-4">
+              <dl class="mt-6 pt-6 border-t border-neutral-800 space-y-4">
                 <div>
-                  <dt class="text-xs tracking-widest uppercase text-white">Suited to</dt>
-                  <dd class="mt-1 text-neutral-300">{program.hub.suitedTo}</dd>
+                  <dt class="text-xs font-semibold tracking-[0.18em] uppercase text-brand">Suited to</dt>
+                  <dd class="mt-1 text-neutral-300 text-sm leading-relaxed">{program.hub.suitedTo}</dd>
                 </div>
                 <div>
-                  <dt class="text-xs tracking-widest uppercase text-white">Focus</dt>
-                  <dd class="mt-1 text-neutral-300">{program.hub.focus}</dd>
+                  <dt class="text-xs font-semibold tracking-[0.18em] uppercase text-brand">Focus</dt>
+                  <dd class="mt-1 text-neutral-300 text-sm leading-relaxed">{program.hub.focus}</dd>
                 </div>
                 <div>
-                  <dt class="text-xs tracking-widest uppercase text-white">How it runs</dt>
-                  <dd class="mt-1 text-neutral-300">{program.hub.runs}</dd>
+                  <dt class="text-xs font-semibold tracking-[0.18em] uppercase text-brand">How it runs</dt>
+                  <dd class="mt-1 text-neutral-300 text-sm leading-relaxed">{program.hub.runs}</dd>
                 </div>
               </dl>
-              <a
-                href={`/coaching/${program.slug}/`}
-                aria-label={`${program.shortTitle}: read the full program`}
-                class="inline-block mt-auto pt-8 self-start border border-neutral-600 hover:border-amber-400 text-neutral-200 font-semibold px-6 py-3 text-sm tracking-widest uppercase transition-colors focus-ring"
-              >
-                Read the full program
-              </a>
+              <div class="mt-auto pt-8">
+                <a
+                  href={`/coaching/${program.slug}/`}
+                  aria-label={`${program.shortTitle}: read the full program`}
+                  class="inline-block w-full text-center bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-6 py-3.5 text-xs tracking-[0.18em] uppercase transition-colors focus-ring"
+                >
+                  Read the Full Program
+                </a>
+              </div>
             </div>
           </article>
         ))}
@@ -96,27 +125,49 @@ const description =
 
   <section class="relative">
     <SiteImage src={standOut} alt="Stand out from the crowd" class="w-full h-[40vh] md:h-[55vh] object-cover" />
-    <div class="absolute inset-0 bg-neutral-950/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-neutral-950/60 via-neutral-950/35 to-neutral-950/75"></div>
   </section>
 
-  <section class="bg-neutral-950 py-24">
-    <div class="max-w-3xl mx-auto px-6 space-y-12">
-      <h2 class="font-serif text-3xl md:text-4xl text-center">What Changes</h2>
-      <blockquote class="font-serif text-2xl md:text-3xl leading-relaxed italic text-center">
-        "When the diagnostic work is done, my clients don't just perform better, they lead differently."
+  <section class="bg-neutral-950 py-24 md:py-28">
+    <div class="max-w-4xl mx-auto px-6 space-y-12">
+      <div class="text-center space-y-4">
+        <p class="text-xs font-semibold tracking-[0.22em] uppercase text-brand">
+          Measurable Behavioural Shift
+        </p>
+        <h2 class="font-serif text-3xl md:text-5xl text-white">What Changes</h2>
+      </div>
+      <blockquote class="font-serif text-2xl md:text-3xl leading-relaxed italic text-center text-neutral-200 max-w-3xl mx-auto">
+        &ldquo;When the diagnostic work is done, my clients don&rsquo;t just perform better, they lead differently.&rdquo;
       </blockquote>
-      <ul class="space-y-4 text-neutral-300 text-lg list-disc pl-5">
-        {coachingOutcomes.map((outcome) => <li>{outcome}</li>)}
+      <ul class="grid gap-4 bg-neutral-900 border border-neutral-800 p-8 md:p-10 text-neutral-200 text-lg">
+        {coachingOutcomes.map((outcome) => (
+          <li class="flex items-start gap-4">
+            <span class="text-brand font-serif text-xl leading-none mt-1 shrink-0" aria-hidden="true">&#10003;</span>
+            <span>{outcome}</span>
+          </li>
+        ))}
       </ul>
-      <blockquote class="font-serif text-2xl md:text-3xl leading-relaxed italic text-center text-white">
-        "This isn't about becoming a different leader, it's about removing what's in the way of the
-        leader you already are."
+      <blockquote class="font-serif text-2xl md:text-3xl leading-relaxed italic text-center text-white max-w-3xl mx-auto">
+        &ldquo;This isn&rsquo;t about becoming a different leader, it&rsquo;s about removing what&rsquo;s in the way of the
+        leader you already are.&rdquo;
       </blockquote>
-      <p class="text-center">
-        <a href="/about-sharon" class="text-white text-sm tracking-widest uppercase hover:underline focus-ring rounded-sm">
-          About Sharon's credentials &rarr;
+      <div class="flex flex-wrap justify-center items-center gap-6 pt-4">
+        <a
+          href={CALENDLY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-brand hover:bg-brand-hover text-neutral-950 font-semibold px-7 py-3.5 text-xs sm:text-sm tracking-[0.18em] uppercase transition-colors focus-ring"
+        >
+          Book a Complimentary Consultation
         </a>
-      </p>
+        <a
+          href="/about-sharon/"
+          class="inline-flex items-center gap-2 text-brand hover:text-brand-hover text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase transition-colors focus-ring rounded-sm"
+        >
+          <span>About Sharon&rsquo;s credentials</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
     </div>
   </section>
 </Layout>

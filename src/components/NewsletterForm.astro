@@ -5,12 +5,12 @@ const formId = FLODESK_INLINE_FORM_ID;
 const containerId = `fd-form-${formId}`;
 
 const fieldClass =
-  'w-full sm:w-[250px] h-[53.5px] px-5 bg-transparent border border-white text-white font-serif placeholder:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70';
+  'w-full sm:w-[230px] h-[50px] px-4 bg-neutral-950/35 border border-white/40 text-white text-sm font-sans placeholder:text-white/70 focus:border-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/80 transition-colors';
 ---
 
 <div class="newsletter-form">
   <form
-    class="flex flex-col sm:flex-row sm:flex-nowrap sm:justify-center gap-2.5 items-stretch"
+    class="flex flex-col sm:flex-row sm:flex-nowrap sm:justify-center gap-3 items-stretch max-w-4xl mx-auto"
     data-newsletter-fallback
   >
     <label class="sr-only" for="newsletter-first-name">First name</label>
@@ -48,7 +48,7 @@ const fieldClass =
     />
     <button
       type="submit"
-      class="h-[53.5px] px-5 bg-black text-white font-serif whitespace-nowrap rounded-[5.4px] border border-black hover:bg-neutral-900 transition-colors focus-ring"
+      class="h-[50px] px-7 bg-brand text-neutral-950 font-sans font-semibold text-xs tracking-[0.18em] uppercase whitespace-nowrap hover:bg-brand-hover transition-colors focus-ring cursor-pointer"
     >
       Subscribe
     </button>

@@ -24,6 +24,12 @@ export function chapterStartSeconds(time: string): number {
   return minutes * 60 + seconds;
 }
 
+export function formatDuration(seconds: number): string {
+  const minutes = Math.floor(seconds / 60);
+  const remainder = seconds % 60;
+  return `${minutes}:${String(remainder).padStart(2, '0')}`;
+}
+
 export function isoDuration(seconds: number): string {
   const minutes = Math.floor(seconds / 60);
   const remainder = seconds % 60;

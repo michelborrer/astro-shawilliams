@@ -7,6 +7,14 @@ export async function onRequest(context) {
 
   if (!duplicate) return context.next();
 
+  // Keep non-production branch preview URLs (e.g. staging-visual-improvements.astro-shawilliams.pages.dev) accessible
+  if (
+    host.endsWith('.astro-shawilliams.pages.dev') &&
+    !/^[0-9a-f]{8}\.astro-shawilliams\.pages\.dev$/.test(host)
+  ) {
+    return context.next();
+  }
+
   url.protocol = 'https:';
   url.hostname = APEX;
   url.port = '';
